@@ -24,6 +24,7 @@
 \usepackage{caption}
 \usepackage{adjustbox}
 \usepackage{upquote}
+\usepackage{hyperref}
 \usetikzlibrary{mindmap,shadows, shapes, arrows, positioning}
 
 %\input{colours.tex}
@@ -35,6 +36,12 @@
 \usetheme{m}
 \metroset{everytitleformat=regular}
 
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=gray,   
+  urlcolor=gray
+}
 
 
 \defbeamertemplate*{title page}{customized}[1][]{
@@ -101,6 +108,7 @@
 }
 
 \usemintedstyle{pastie}
+
 \AtBeginSection{\frame{\sectionpage}}
 
 \renewcommand\footnoterule{}

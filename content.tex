@@ -79,16 +79,16 @@ else:
 # A for loop.
 a = ['Mary', 'had', 'a', 'little', 'lamb']
 for i in range(len(a)):
-  print i, a[i]
+  print(i, a[i])
   \end{minted}
   \begin{minted}[linenos, frame=lines, framesep=2mm]{python}
 # A while loop.
 a, b = 0, 1
 while b < 1000:
-  print b,
+  print(b)
   a, b = b, a+b
   \end{minted}
-  \citeurl{docs.python.org/2/tutorial}
+  \citeurl{docs.python.org/3/tutorial}
 \end{frame}
 
 \begin{frame}[fragile]{Functions}
@@ -98,10 +98,10 @@ def fib(n):
   """Print a Fibonacci series up to n."""
   a, b = 0, 1
   while a < n:
-    print a,
+    print(a)
     a, b = b, a+b
   \end{minted}
-  \citeurl{docs.python.org/2/tutorial}
+  \citeurl{docs.python.org/3/tutorial}
 \end{frame}
 
 \begin{frame}{CPython}
@@ -117,6 +117,96 @@ def fib(n):
   \citeurl{www.python.org}
 \end{frame}
 
+\begin{frame}[fragile]{Lists}
+	\begin{description}
+		\item[Lists] in Python are usually written as comma-separated values between square brackets.
+		\item[Types] -- elements of a list don't have to have the same types.
+		\item[Slicing] is possible, where we take a sublist of the list.
+		\item[Assignment] to slices is possible.
+		\item[len()] is a built-in function that returns the length of a list.
+		\item[range()] is a built-in function that returns a list of numbers. Note: it returns an \emph{iterator}.
+	\end{description}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+letters = ['a', 'b', 'c']
+letters[1:] = ['c', 'd']
+range(10) # [0,1,2,3,4,5,6,7,8,9]
+  \end{minted}
+  \citeurl{docs.python.org/3/tutorial}
+\end{frame}
+
+\begin{frame}[fragile]{Strings}
+	\begin{description}
+	  \item[Strings] are a lot like lists in Python.
+	  \item[Assignment] to slices is not allowed, however.
+	\end{description}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+words = "This is a sentence."
+words[8]         # a
+words[5:7]       # is
+words[:7]        # This is
+words[10:]       # sentence.
+words[17:9:-1]   # ecnetnes
+
+len(words)       # 19
+"One" + "Two"    # OneTwo
+  \end{minted}
+	\citeurl{docs.python.org/3/tutorial}
+\end{frame}
+
+\begin{frame}[fragile]{Functions}
+	\begin{description}
+	  \item[def] is the keyword for defining a function.
+	  \item[Parameters] can be given defaults, so that they are optional.
+	\end{description}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+def axn(x, a=1, n=2):
+	return a*(x**n)    # ax^n
+ 
+axn(3)       # 9
+axn(3, 2)    # 18
+axn(3, 2, 3) # 54
+axn(3, n=3)  # 27
+  \end{minted}
+	\citeurl{docs.python.org/3/tutorial}
+\end{frame}
+
+\begin{frame}[fragile]{List comprehensions}
+	\begin{description}
+	  \item[Comprehensions] are quick ways of creating lists from other lists.
+	\end{description}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+nos = range(5) # [0, 1, 2, 3, 4]
+squares = [i*i for i in nos] # [0, 1, 4, 9, 16]
+oddsqs = [i*i for i in nos if i % 2 == 1] # [1, 9]
+  \end{minted}
+	\citeurl{docs.python.org/3/tutorial}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{map()}
+	\begin{description}
+	  \item[map()] takes a function and a list.
+	  \item[New list] -- it returns a new generator, which is the original list with the function applied to each element.
+	\end{description}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+map(len, words)
+list(map(len, words))
+  \end{minted}
+	\citeurl{docs.python.org/3/tutorial}
+\end{frame}
+
+
+\begin{frame}[fragile]{Lambda functions}
+	\begin{description}
+	  \item[lambda] functions are short, inline functions.
+	  \item[Nameless] -- lambda functions need not have a name.
+	\end{description}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+lambda x: x + n
+  \end{minted}
+	\citeurl{docs.python.org/3/tutorial}
+\end{frame}
 
 \section{Timing Algorithms}
 

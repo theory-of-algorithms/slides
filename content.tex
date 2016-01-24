@@ -208,6 +208,82 @@ lambda x: x + n
 	\citeurl{docs.python.org/3/tutorial}
 \end{frame}
 
+
+
+\begin{frame}[fragile]{Without generators}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+# Build and return a list
+def firstn(n):
+    num, nums = 0, []
+    while num < n:
+        nums.append(num)
+        num += 1
+    return nums
+
+sum_of_first_n = sum(firstn(1000000))
+  \end{minted}
+	\citeurl{https://wiki.python.org/moin/Generators}
+\end{frame}
+
+\begin{frame}[fragile]{With generators}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+# yields items instead of returning a list
+def firstn(n):
+    num = 0
+    while num < n:
+        yield num
+        num += 1
+
+sum_of_first_n = sum(firstn(1000000))
+  \end{minted}
+	\citeurl{https://wiki.python.org/moin/Generators}
+\end{frame}
+
+
+\begin{frame}[fragile]{Permutations}
+	\begin{description}
+		\item[Permutations] are rearrangements of ordered collections of items.
+		\item[Example:] ``abcd'' is a rearrangement of ``bacd''.
+	\end{description}
+	
+	\begin{block}{Abstraction}
+		We can consider permutations abstractly.
+		For instance, if we have four items to rearrange, we can label the first item 1, the second 2, and so on.
+		Then we can represent the various permutations, in terms of the numbers associated with the items.
+		The permutations above could be represented by $(1\ 2\ 3\ 4)$ and $(2\ 1\ 3\ 4)$.
+		We can see then that when we are considering permutations of $n$ items, it doesn't matter what those items are, we just consider them as numbers.
+	\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]{Counting permutations}
+	\begin{block}{With four items, how many distinct permutations are there?}
+		Consider having four placeholders where we can place the items:
+		\[ \textbf{\fbox{?}} \  \textbf{\fbox{?}} \  \textbf{\fbox{?}} \  \textbf{\fbox{?}} \]
+		
+		When we place an item in the first box, we have four choices, then we are left with only three choice for the second, two choices for the third, and one choice (i.e.\ not a choice at all) for the last.
+
+	So for there are $4 \times 3 \times 2 \times 1 = 4!$ choices in total.
+	\end{block}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Counting anagrams}
+	\begin{block}{Repitition}
+		What happens when we consider two of our items to be the same?
+		For instance, what if we are looking for all distinct rearrangements of ``aacd'' as opposed to ``abcd''?
+	In that case we need to account for the rearrangements of those items by dividing by the factorial of the number of times each item is repeated: $\frac{4!}{2!}$.
+	\end{block}
+	
+	If more than one item is repeated a number of times we just keep dividing by the factorials of the numbers of repititons.
+	The distinct number of rearrangements of ``aaabbcd'' is $\frac{7!}{3!2!}$.
+
+	\begin{block}{Exercise}
+		Calculate the number of distinct rearragements of the word ``Mississippi''.
+	\end{block}
+\end{frame}
+
 \section{Timing Algorithms}
 
 \section{Functional Programming}

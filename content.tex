@@ -239,20 +239,28 @@ sum_of_first_n = sum(firstn(1000000))
 	\citeurl{https://wiki.python.org/moin/Generators}
 \end{frame}
 
+\section{Permutations}
 
-\begin{frame}[fragile]{Permutations}
+
+\begin{frame}{Permutations}
 	\begin{description}
 		\item[Permutations] are rearrangements of ordered collections of items.
 		\item[Example:] ``abcd'' is a rearrangement of ``bacd''.
+		\item[Think] of having a four boxes, where we have to place one of the items in each box.
+		\item[What] are all the different ways of doing this?
+		\item[What] are all the different ways of associating items with boxes?
 	\end{description}
-	
-	\begin{block}{Abstraction}
-		We can consider permutations abstractly.
+\end{frame}
+
+\begin{frame}{Abstraction}
+		We can consider permutations in abstraction.
 		For instance, if we have four items to rearrange, we can label the first item 1, the second 2, and so on.
 		Then we can represent the various permutations, in terms of the numbers associated with the items.
-		The permutations above could be represented by $(1\ 2\ 3\ 4)$ and $(2\ 1\ 3\ 4)$.
-		We can see then that when we are considering permutations of $n$ items, it doesn't matter what those items are, we just consider them as numbers.
-	\end{block}
+		The permutations ``abcd'' and ``bacd'' could be represented by:
+			\[ \left( \begin{array}{cccc} 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ \end{array} \right) 
+    			\qquad \textrm{and} \qquad
+         \left( \begin{array}{cccc} 1 & 2 & 3 & 4 \\ 2 & 1 & 3 & 4 \\ \end{array} \right) \]
+		In this way we can consider permutations in their own right.
 \end{frame}
 
 
@@ -284,7 +292,90 @@ sum_of_first_n = sum(firstn(1000000))
 	\end{block}
 \end{frame}
 
+
+\begin{frame}[fragile]{Heap's algorithm}
+	\begin{description}
+		\item[Heap] published an algorithm in November 1963 for generating permutations.
+		\item[Published] in The Computer Journal.
+		\item[Read] the article in the link below -- it's an easy read.
+		\item[Pairs] of items are interchanged to generate each new permutation.
+		\item[Induction] is used to show the algorithm works.
+	\end{description}
+	\citeurl{comjnl.oxfordjournals.org/content/6/3/293.full.pdf}
+\end{frame}
+
+\begin{frame}[fragile]{Heap's algorithm description}
+	\begin{itemize}
+		\item Suppose we know how to permute $(n-1)$ items.
+		\item That is, we know all of the different ways of slotting $(n-1)$ items in $(n-1)$ boxes.
+		\item Let's add another, $n^{th}$ item, and another box, an $n^{th}$ box.
+		\item First, place the $n^{th}$ item in the $n^{th}$ box.
+		\item Permute all the the other items, which you know how to do.
+		\item Then swap another item with the $n^{th}$ item.
+		\item Again permute the items in boxes $1$ to $(n-1)$.
+		\item Swap the item in the $n^{th}$ box with another, different item.
+		\item Repeat until all items have been in box $n$.
+	\end{itemize}
+	\citeurl{comjnl.oxfordjournals.org/content/6/3/293.full.pdf}
+\end{frame}
+
+\begin{frame}{Steinhaus-Johnson-Trotter algorithm}
+	\begin{description}
+		\item[Johnson] published another algorithm in 1963 for generating permutations.
+		\item[Attributed] to three people: Steinhaus, Johnson and Trotter.
+		\item[See] the article in the link below -- it's a trickier read.
+		\item[Pairwise] -- the algorithm can be done pair-wise, like Heap's.
+		\item[Induction] is used to show the algorithm works.
+	\end{description}
+	\citeurl{www.ams.org/journals/mcom/1963-17-083/S0025-5718-1963-0159764-2/S0025-5718-1963-0159764-2.pdf}
+\end{frame}
+
+\begin{frame}[fragile]{Steinhaus-Johnson-Trotter algorithm description}
+	\begin{itemize}
+		\item Start with two items, $1$ and $2$, and generate their list of permutations $12$ and $21$.
+		\item Use the two-item list to generate the three item list in the following way:
+		\begin{itemize}
+			\item Place $3$ at the right of the first element in the two-item list.
+			\item Then move $3$ one place to the left continuosly until its on the left.
+			\item Then place $3$ at the left of the next element in the two-item list.
+			\item move $3$ one place to the right continuously until it reaches the right.
+		\end{itemize}
+		\item Use the three item list to generate the four item list in the same way, and so on.
+	\end{itemize}
+	\citeurl{comjnl.oxfordjournals.org/content/6/3/293.full.pdf}
+\end{frame}
+
 \section{Timing Algorithms}
+\begin{frame}[fragile]{timeit command line}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{bash}
+$ python -m timeit '"-".join(str(n) for n in range(100))'
+10000 loops, best of 3: 30.2 usec per loop
+$ python -m timeit '"-".join([str(n) for n in range(100)])'
+10000 loops, best of 3: 27.5 usec per loop
+$ python -m timeit '"-".join(map(str, range(100)))'
+10000 loops, best of 3: 23.2 usec per loop
+  \end{minted}
+	\citeurl{docs.python.org/3/library/timeit.html}
+\end{frame}
+
+\begin{frame}[fragile]{timeit module}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+import timeit
+
+def test():
+    """Stupid test function"""
+    L = [i for i in range(100)]
+
+if __name__ == '__main__':
+    import timeit
+    print(timeit.timeit("test()",
+            setup="from __main__ import test"))
+  \end{minted}
+	\citeurl{docs.python.org/3/library/timeit.html}
+\end{frame}
+
+
+
 
 \section{Functional Programming}
 

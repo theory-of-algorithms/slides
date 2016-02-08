@@ -345,6 +345,37 @@ sum_of_first_n = sum(firstn(1000000))
 	\citeurl{comjnl.oxfordjournals.org/content/6/3/293.full.pdf}
 \end{frame}
 
+\begin{frame}[fragile]{Conundrum -- Naive method}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+for permutation in permutations(letters):
+  checkIfWord(permutation)
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Conundrum -- Quick method preparation}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+worddict = {}
+
+for word in dictionaryOfWords:
+  sortword = sorted(list(word))
+  hashword = hash(sortword)
+  allWords = worddict.get(hashword, set())
+  allWords.update({word})
+  worddict[hashword] = allWords
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Conundrum -- Quick method checking}
+	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+word = "conundrum"
+sortword = sorted(list(word))
+hashword = hash(sortword)
+
+worddict.get(hashword, None)
+  \end{minted}
+\end{frame}
+
+
 \section{Timing Algorithms}
 \begin{frame}[fragile]{timeit command line}
 	\begin{minted}[linenos, frame=lines, framesep=2mm]{bash}

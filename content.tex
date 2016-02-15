@@ -409,6 +409,42 @@ if __name__ == '__main__':
 
 
 \section{Functional Programming}
+\begin{frame}{Guido van Rossum}
+  \begin{columns}
+    \begin{column}{0.2\textwidth}
+      \includegraphics[width=1.2in]{img/john-mccarthy.png}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
+        \item John McCarthy while at Massachusetts Institute of Technology.
+        \vspace{0.25cm}
+        \item Created Lisp.
+        \vspace{0.25cm}
+        \item Lisp generally considered first functional programming language (not really though).
+        \vspace{0.25cm}
+        \item Scheme and Dylan were later attempts to simplify and improve Lisp.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{For loops}
+  \begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+inds = list(range(10))
+total = 0
+for i in inds:
+  total = total + (i * 7)
+  \end{minted}
+  \begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+def byseven(i):
+  return i * 7
+
+inds = list(range(10))
+sevens = map(inds, byseven)
+total = sum(sevens)
+  \end{minted}
+\end{frame}
+
 
 \section{Turing Machines}
 

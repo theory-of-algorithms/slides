@@ -447,9 +447,25 @@ total = sum(sevens)
 \end{frame}
 
 \begin{frame}{State}
-Coming soon...
+\begin{description}
+  \item[Imperative] programming is a programming paradigm where statements are used to change the \emph{state}.
+  \item[State] is the name given to the current data/values related to an executing process, including internal stuff like the call stack.
+  \item[Processes] begin with an initial state and (possibly) have (a number of) halt states.
+  \item[Statements] change the state.
+  \item[Functions] in imperative programming languages might return different values for the same input at different times, because of the state.
+  \item[Functional] programming languages (try to) not depend on state.
+\end{description}
 \end{frame}
 
+
+\begin{frame}{Side effects}
+  \begin{description}
+    \item[Functions] are said to have side effects if they modify the state (on top of returning a value).
+    \item[Static and global] variables are often good examples of side effects in action.
+    \item[Functional] programming tries to avoid side effects.
+    \item[It's tricky] to avoid them -- such as when we need user input.
+  \end{description}
+\end{frame}
 
 \section{Turing Machines}
 

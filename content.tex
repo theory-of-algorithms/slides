@@ -429,8 +429,9 @@ if __name__ == '__main__':
   \citeurl{www-formal.stanford.edu/jmc/}
 \end{frame}
 
-\begin{frame}[fragile]{For loops}
+\begin{frame}[fragile]{Wasteful for loops}
   \begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+# How do you parallelise this?
 inds = list(range(10))
 total = 0
 for i in inds:
@@ -466,6 +467,184 @@ total = sum(sevens)
     \item[It's tricky] to avoid them -- such as when we need user input.
   \end{description}
 \end{frame}
+
+\begin{frame}[fragile]{Basic operators}
+\begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (+ 3 4)
+7
+> (* 3 2)
+6
+> (- 5 3)
+2
+> (/ 6 3)
+2
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{More arguments}
+\begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (+ 3 4 5)
+(+ 3 4 5)
+> (- 3 4 5)
+-6
+> (* 2 3 4)
+24
+> (/ 6 3 3)
+2/3
+> (/ 6 3 3 3)
+2/9
+\end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]{Functions and values}
+\begin{minted}[frame=lines, framesep=2mm]{scheme}
+; Define a value called foo with value 3.
+>(define foo 3)
+
+; Define a function f.	
+>(define (f x)
+  (+ (* 3 x) 12))
+
+>(define (g x)
+  (* 3 (+ x 4)))
+
+>(g 2)
+18
+\end{minted}
+\citeurl{www.artificialworlds.net/presentations/scheme-01-intro/scheme-01-intro.html}
+\end{frame}
+
+\begin{frame}[fragile]{Functions and values}
+  \begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (if (< 1 2) '(y e s) '(n o))
+(y e s)
+
+>(define (abs x)
+  (if (< x 0)
+  (- x)
+  x))
+
+\end{minted}
+\citeurl{www.artificialworlds.net/presentations/scheme-01-intro/scheme-01-intro.html}
+\end{frame}
+
+
+\begin{frame}[fragile]{Functions and values}
+  \begin{minted}[frame=lines, framesep=2mm]{scheme}
+>(list 1 2 3)
+(1 2 3)
+
+>(list 'a 'b 'c)
+(a b c)
+
+> (length (list 1 2 3))
+3
+\end{minted}
+\citeurl{www.artificialworlds.net/presentations/scheme-01-intro/scheme-01-intro.html}
+\end{frame}
+
+\begin{frame}[fragile]{car and cdr}
+  \begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (car (list 1 2 3))
+1
+> (cdr (list 1 2 3))
+(2 3)
+> (define l (list 1 2 3))
+> (car l)
+1
+> (cdr l)
+(2 3)
+> (car (cdr l))
+2
+> (cadr l)
+2
+\end{minted}
+\citeurl{www.artificialworlds.net/presentations/scheme-01-intro/scheme-01-intro.html}
+\end{frame}
+
+\begin{frame}[fragile]{car and cdr}
+  \begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (define (sum list-of-values)
+  (if (= 1 (length list-of-values))
+    (car list-of-values)
+    (+ (car list-of-values)
+        (sum (cdr list-of-values)))))
+
+> (sum (list 5 6 7))
+18
+\end{minted}
+\citeurl{www.artificialworlds.net/presentations/scheme-01-intro/scheme-01-intro.html}
+\end{frame}
+
+\begin{frame}[fragile]{car and cdr}
+\begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (define (swap3-1-2 x)
+  (list (cadr x) (car x) (caddr x)))
+
+> (swap3-1-2 (list 1 2 3))
+(2 1 3)
+
+> (define four-over-two (list 4 '/ 2))
+
+> four-over-two
+(4 / 2)
+
+> (eval (swap3-1-2 four-over-two))
+\end{minted}
+\citeurl{www.artificialworlds.net/presentations/scheme-01-intro/scheme-01-intro.html}
+\end{frame}
+
+\begin{frame}[fragile]{More on functions}
+\begin{minted}[frame=lines, framesep=2mm]{scheme}
+; Printing stuff to terminal.
+(print "Ay" "-" "yo.\n")
+; Proper way to define a function.
+(define foo (lambda (bar) (print "Bar is " bar ".\n"))
+; Shorthand.
+(define (foo bar) (print "Bar is " bar ".\n")
+
+; Local variables.
+> (define (foo bar) (let ((thing "Bar"))
+    (print thing " is " bar ".\n")))
+> (foo "open")
+Bar is open.
+\end{minted}
+\citeurl{gambitscheme.org/wiki/images/a/a7/A\_Tour\_of\_Scheme\_in\_Gambit.pdf}
+\end{frame}
+
+\begin{frame}[fragile]{Looping recursively}
+  \begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (let loop ((i 5))
+  (print "i is " i ".\n")
+  (if (> i 0) (loop (- i 1))))
+i is 5.
+i is 4.
+i is 3.
+i is 2.
+i is 1.
+i is 0.
+\end{minted}
+\citeurl{gambitscheme.org/wiki/images/a/a7/A\_Tour\_of\_Scheme\_in\_Gambit.pdf}
+\end{frame}
+
+\begin{frame}[fragile]{Closures}
+  \begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (define (container value)
+  (lambda ()
+  (string-append "This container contains " value ".")))
+> (define apple (container "an apple"))
+> (define pie (container "a pie"))
+> (apple)
+"This container contains an apple."
+> (apple)
+"This container contains an apple."
+> (pie)
+"This container contains a pie."
+\end{minted}
+\citeurl{gambitscheme.org/wiki/images/a/a7/A\_Tour\_of\_Scheme\_in\_Gambit.pdf}
+\end{frame}
+
 
 \section{Turing Machines}
 

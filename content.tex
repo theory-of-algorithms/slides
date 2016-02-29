@@ -646,6 +646,47 @@ i is 0.
 \end{frame}
 
 
+\begin{frame}[fragile]{cons}
+\begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (cons 1 '())
+(1)
+> (cons 1 (cons 2 null))
+(1 2)
+> (cons 1 (cons 2 (cons 3 null)))
+(1 2 3)
+> (define mylist (cons 1 (cons 2 (cons 3 null))))
+> mylist
+(1 2 3)
+> (car mylist)
+1
+> (cdr mylist)
+(2 3)
+\end{minted}
+\citeurl{www.artificialworlds.net/presentations/scheme-02-basics/scheme-02-basics.html}
+\end{frame}
+
+\begin{frame}[fragile]{lists}
+\begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (list "a" "b" "c")
+("a" "b" "c")
+> (list a b c)
+reference to undefined identifier: a
+> (list 'a 'b 'c)
+(a b c)
+\end{minted}
+\citeurl{www.artificialworlds.net/presentations/scheme-02-basics/scheme-02-basics.html}
+\end{frame}
+
+\begin{frame}[fragile]{lists}
+\begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (equal? 
+    (list 1 2 3)
+    (cons 1 (cons 2 (cons 3 '()))))
+#t
+\end{minted}
+\citeurl{www.artificialworlds.net/presentations/scheme-02-basics/scheme-02-basics.html}
+\end{frame}
+
 \section{Turing Machines}
 
 \section{Complexity Classes}

@@ -515,7 +515,7 @@ total = sum(sevens)
 \citeurl{www.artificialworlds.net/presentations/scheme-01-intro/scheme-01-intro.html}
 \end{frame}
 
-\begin{frame}[fragile]{Functions and values}
+\begin{frame}[fragile]{Conditionals}
   \begin{minted}[frame=lines, framesep=2mm]{scheme}
 > (if (< 1 2) '(y e s) '(n o))
 (y e s)
@@ -530,7 +530,7 @@ total = sum(sevens)
 \end{frame}
 
 
-\begin{frame}[fragile]{Functions and values}
+\begin{frame}[fragile]{Lists}
   \begin{minted}[frame=lines, framesep=2mm]{scheme}
 >(list 1 2 3)
 (1 2 3)
@@ -563,21 +563,40 @@ total = sum(sevens)
 \citeurl{www.artificialworlds.net/presentations/scheme-01-intro/scheme-01-intro.html}
 \end{frame}
 
-\begin{frame}[fragile]{car and cdr}
+\begin{frame}[fragile]{Recursion}
   \begin{minted}[frame=lines, framesep=2mm]{scheme}
-> (define (sum list-of-values)
-  (if (= 1 (length list-of-values))
-    (car list-of-values)
-    (+ (car list-of-values)
-        (sum (cdr list-of-values)))))
-
-> (sum (list 5 6 7))
-18
+> (define (sum lv)              
+    (if (null? lv)
+      0
+      (+ (car lv) (sum (cdr lv)))))
+> (sum (list 1 2 3))                            
+6
+> (define (derange n)
+    (if (= 0 n)
+      '()
+      (cons n (derange (- n 1)))))
+> (derange 12)                                                    
+(12 11 10 9 8 7 6 5 4 3 2 1)
 \end{minted}
 \citeurl{www.artificialworlds.net/presentations/scheme-01-intro/scheme-01-intro.html}
 \end{frame}
 
-\begin{frame}[fragile]{car and cdr}
+\begin{frame}[fragile]{Looping recursively}
+\begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (let loop ((i 5))
+(print "i is " i ".\n")
+(if (> i 0) (loop (- i 1))))
+i is 5.
+i is 4.
+i is 3.
+i is 2.
+i is 1.
+i is 0.
+\end{minted}
+\citeurl{gambitscheme.org/wiki/images/a/a7/A\_Tour\_of\_Scheme\_in\_Gambit.pdf}
+\end{frame}
+
+\begin{frame}[fragile]{Data and code}
 \begin{minted}[frame=lines, framesep=2mm]{scheme}
 > (define (swap3-1-2 x)
   (list (cadr x) (car x) (caddr x)))
@@ -598,49 +617,17 @@ total = sum(sevens)
 \begin{frame}[fragile]{More on functions}
 \begin{minted}[frame=lines, framesep=2mm]{scheme}
 ; Printing stuff to terminal.
-(print "Ay" "-" "yo.\n")
+> (print "Ay" "-" "yo.\n")
 ; Proper way to define a function.
-(define foo (lambda (bar) (print "Bar is " bar ".\n"))
+> (define foo (lambda (bar) (print "Bar is " bar ".\n")))
 ; Shorthand.
-(define (foo bar) (print "Bar is " bar ".\n")
+> (define (foo bar) (print "Bar is " bar ".\n"))
 
 ; Local variables.
 > (define (foo bar) (let ((thing "Bar"))
     (print thing " is " bar ".\n")))
 > (foo "open")
 Bar is open.
-\end{minted}
-\citeurl{gambitscheme.org/wiki/images/a/a7/A\_Tour\_of\_Scheme\_in\_Gambit.pdf}
-\end{frame}
-
-\begin{frame}[fragile]{Looping recursively}
-  \begin{minted}[frame=lines, framesep=2mm]{scheme}
-> (let loop ((i 5))
-  (print "i is " i ".\n")
-  (if (> i 0) (loop (- i 1))))
-i is 5.
-i is 4.
-i is 3.
-i is 2.
-i is 1.
-i is 0.
-\end{minted}
-\citeurl{gambitscheme.org/wiki/images/a/a7/A\_Tour\_of\_Scheme\_in\_Gambit.pdf}
-\end{frame}
-
-\begin{frame}[fragile]{Closures}
-  \begin{minted}[frame=lines, framesep=2mm]{scheme}
-> (define (container value)
-  (lambda ()
-  (string-append "This container contains " value ".")))
-> (define apple (container "an apple"))
-> (define pie (container "a pie"))
-> (apple)
-"This container contains an apple."
-> (apple)
-"This container contains an apple."
-> (pie)
-"This container contains a pie."
 \end{minted}
 \citeurl{gambitscheme.org/wiki/images/a/a7/A\_Tour\_of\_Scheme\_in\_Gambit.pdf}
 \end{frame}
@@ -665,7 +652,7 @@ i is 0.
 \citeurl{www.artificialworlds.net/presentations/scheme-02-basics/scheme-02-basics.html}
 \end{frame}
 
-\begin{frame}[fragile]{lists}
+\begin{frame}[fragile]{More on lists}
 \begin{minted}[frame=lines, framesep=2mm]{scheme}
 > (list "a" "b" "c")
 ("a" "b" "c")
@@ -673,19 +660,68 @@ i is 0.
 reference to undefined identifier: a
 > (list 'a 'b 'c)
 (a b c)
-\end{minted}
-\citeurl{www.artificialworlds.net/presentations/scheme-02-basics/scheme-02-basics.html}
-\end{frame}
 
-\begin{frame}[fragile]{lists}
-\begin{minted}[frame=lines, framesep=2mm]{scheme}
 > (equal? 
-    (list 1 2 3)
-    (cons 1 (cons 2 (cons 3 '()))))
+(list 1 2 3)
+(cons 1 (cons 2 (cons 3 '()))))
 #t
 \end{minted}
 \citeurl{www.artificialworlds.net/presentations/scheme-02-basics/scheme-02-basics.html}
 \end{frame}
+
+\begin{frame}[fragile]{Quoting}
+\begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (list a b c)
+*** ERROR IN (console)@41.7 -- Unbound variable: a
+> (quote (a b c))
+(a b c)
+> (quote a b c)
+*** ERROR IN (console)@42.1 -- Ill-formed special form: quote
+> '(a b c) 
+(a b c)
+> (define forty-two '(* 6 9))
+> forty-two
+(* 6 9)
+> (eval forty-two)
+54
+\end{minted}
+\citeurl{www.artificialworlds.net/presentations/scheme-05-quotation/scheme-05-quotation.html}
+\end{frame}
+
+\begin{frame}[fragile]{Null list}
+\begin{minted}[frame=lines, framesep=2mm]{scheme}
+> ()
+missing procedure expression
+> (list)
+()
+> '()
+()
+> null
+()
+> 'null
+null
+\end{minted}
+\citeurl{www.artificialworlds.net/presentations/scheme-05-quotation/scheme-05-quotation.html}
+\end{frame}
+
+\begin{frame}[fragile]{Closures}
+\begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (define (container value)
+(lambda ()
+(string-append "This container contains " value ".")))
+> (define apple (container "an apple"))
+> (define pie (container "a pie"))
+> (apple)
+"This container contains an apple."
+> (apple)
+"This container contains an apple."
+> (pie)
+"This container contains a pie."
+\end{minted}
+\citeurl{gambitscheme.org/wiki/images/a/a7/A\_Tour\_of\_Scheme\_in\_Gambit.pdf}
+\end{frame}
+
+
 
 \section{Turing Machines}
 

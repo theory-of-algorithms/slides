@@ -632,6 +632,19 @@ Bar is open.
 \citeurl{gambitscheme.org/wiki/images/a/a7/A\_Tour\_of\_Scheme\_in\_Gambit.pdf}
 \end{frame}
 
+\begin{frame}[fragile]{Function example}
+  \begin{minted}[frame=lines, framesep=2mm]{scheme}
+> (define l 
+    (let
+      ((d 4) (e 5))
+      (lambda (a b c) (list a b c d e))
+    )
+  )
+> (l 1 2 3)
+(1 2 3 4 5)
+  \end{minted}
+  \citeurl{gambitscheme.org/wiki/images/a/a7/A\_Tour\_of\_Scheme\_in\_Gambit.pdf}
+\end{frame}
 
 \begin{frame}[fragile]{cons}
 \begin{minted}[frame=lines, framesep=2mm]{scheme}

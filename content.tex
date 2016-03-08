@@ -738,4 +738,134 @@ null
 
 \section{Turing Machines}
 
+
+\begin{frame}{Visualisation}
+  \begin{adjustbox}{max width={0.9\textwidth},center} 
+  \begin{tikzpicture}
+  \tikzstyle{every path}=[very thick]
+  
+  \edef\sizetape{0.7cm}
+  \tikzstyle{tmtape}=[draw,minimum size=\sizetape]
+  \tikzstyle{tmhead}=[arrow box,draw,minimum size=.8cm,arrow box arrows={east:.25cm, west:0.25cm}]
+  
+  \begin{scope}[start chain=1 going right,node distance=-0.15mm]
+  \node [on chain=1,tmtape] {1};
+  \node [on chain=1,tmtape] (input) {0};
+  \node [on chain=1,tmtape] {1};
+  \node [on chain=1,tmtape] {1};
+  \node [on chain=1,tmtape] {0};
+  \node [on chain=1,tmtape] {1};
+  \node [on chain=1,tmtape] {0};
+  \node [on chain=1,tmtape] {};
+  \node [on chain=1,tmtape,draw=none] {$\ldots$};
+  \end{scope}
+
+  \node [tmhead,yshift=.7cm] at (input.north) (head) {$q_1$};
+  \end{tikzpicture}
+  \end{adjustbox}
+
+  \vspace{1.5cm}
+
+  \begin{adjustbox}{max width={0.9\textwidth},center} 
+    \begin{tikzpicture}
+    \tikzstyle{every path}=[very thick]
+    
+    \edef\sizetape{0.7cm}
+    \tikzstyle{tmtape}=[draw,minimum size=\sizetape]
+    \tikzstyle{tmhead}=[arrow box,draw,minimum size=.8cm,arrow box arrows={east:.25cm, west:0.25cm}]
+    
+    \begin{scope}[start chain=1 going right,node distance=-0.15mm]
+    \node [on chain=1,tmtape] {1};
+    \node [on chain=1,tmtape] {0};
+    \node [on chain=1,tmtape] (input) {1};
+    \node [on chain=1,tmtape] {1};
+    \node [on chain=1,tmtape] {0};
+    \node [on chain=1,tmtape] {1};
+    \node [on chain=1,tmtape] {0};
+    \node [on chain=1,tmtape] {};
+    \node [on chain=1,tmtape,draw=none] {$\ldots$};
+    \end{scope}
+    
+    \node [tmhead,yshift=.7cm] at (input.north) (head) {$q_2$};
+    \end{tikzpicture}
+  \end{adjustbox}
+\end{frame}
+
+\begin{frame}{Symbols}
+\begin{description}
+  \item[$Q$] Set of states (finite).
+  \item[$G$] Tape alphabet (finite).
+  \item[$B$] Blank symbol, element of $G$.
+  \item[$S$] Input alphabet, subset of $G \setminus  B $.
+  \item[$\delta$] Transition function.
+  \item[$q_0$] Initial state, $\in Q$.
+  \item[$q_a$] Accept state, $\in Q$.
+  \item[$q_r$] Reject state, $\in Q$.
+  \vspace{0.3cm}
+  \item[$M$] Turing Machine: $[ Q, G, B, S, \delta , q_0, q_a, q_r ]$.
+\end{description}
+\end{frame}
+
+\begin{frame}{State Table}
+  \begin{table}
+    \centering
+    \begin{tabular}{cc|ccc}
+      \toprule
+      State	& Input	& Write & Move & Next \\
+      \midrule
+      \multirow{3}{*}{0} 
+      & B & B &  & Accept \\
+      & 0 & 0 & L & 0 \\
+      & 1 & 1 & L & 1 \\
+      \midrule
+      \multirow{3}{*}{1}
+      & B & B &  & Fail \\
+      & 0 & 0 & L & 1 \\
+      & 1 & 1 & L & 0 \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+  
+  \[ \delta(q_i, g_n) \rightarrow (q_j, g_m, L/R) \]
+\end{frame}
+
+\begin{frame}{Languages}
+  \begin{description}
+    \item[Alphabet] Finite set of symbols, denoted $\Sigma$.
+    \item[Word] Sequence of symbols, $w$ from $\Sigma$.
+    \item[Language] Set of words, denoted $L$.
+    \item[Length] Of a word, denoted $|w|$	.
+    \item[Empty word] Unique word of length 0, denoted $\lambda$.
+  \end{description}
+\end{frame}
+
+\begin{frame}{Kleene star}
+  \begin{description}
+    \item[Words] $w_1 w_2$ is the concatenation of words $w_1$ and $w_2$.
+    \item[Languages] $L_1 L_2$ is the language resulting from the concatenation of all words in $L_1$ and all words in $L_2$, in that order.
+    \item[Powers] $L^0 = \{ \lambda \}$, $L^1 = L$ and $L^{n+1} = L^n L$ for all $n > 1$.
+  \end{description}
+  
+  \vspace{0.5cm}
+  
+  \begin{block}{Kleene Star}
+     \[ L^* =  \bigcup_{i=0}^{\infty} L^i \]
+  \end{block}
+  
+  Note that treating the alphabet $\Sigma$ as a language in itself, we get that $\Sigma^*$ is the set of all words over $\Sigma$.
+\end{frame}
+
+\begin{frame}{Example}
+  \begin{description}
+    \item[$\Sigma$] $\{ 0, 1 \}$
+    \item[$L$] $\{ 00, 01, 10, 11 \}$
+    \item[$w_1$] $01$
+    \item[$w_3$] $11$
+    \item[$w_1 w_3$] $0111$
+    \item[$\Sigma^*$] $\{ \lambda, 0, 1, 00, 01, 10, 11, 001, 010, \ldots \}$
+    \item[$L^*$] $\{ \lambda, 00, 01, 10, 11, 0000, 0001, \ldots \}$
+    \item[$L^+$] $\{ 00, 01, 10, 11, 0000, 0001, \ldots \}$
+  \end{description}
+\end{frame}
+
 \section{Complexity Classes}

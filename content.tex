@@ -59,7 +59,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{Conditions}
-  \begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+  \begin{minted}{python}
 x = int(raw_input("Please enter an integer: "))
 if x < 0:
   x = 0
@@ -75,13 +75,13 @@ else:
 \end{frame}
 
 \begin{frame}[fragile]{Loops}
-  \begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+  \begin{minted}{python}
 # A for loop.
 a = ['Mary', 'had', 'a', 'little', 'lamb']
 for i in range(len(a)):
   print(i, a[i])
   \end{minted}
-  \begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+  \begin{minted}{python}
 # A while loop.
 a, b = 0, 1
 while b < 1000:
@@ -92,7 +92,7 @@ while b < 1000:
 \end{frame}
 
 \begin{frame}[fragile]{Functions}
-  \begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+  \begin{minted}{python}
 # write Fibonacci series up to n
 def fib(n):   
   """Print a Fibonacci series up to n."""
@@ -126,7 +126,7 @@ def fib(n):
 		\item[len()] is a built-in function that returns the length of a list.
 		\item[range()] is a built-in function that returns a list of numbers. Note: it returns an \emph{iterator}.
 	\end{description}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+	\begin{minted}{python}
 letters = ['a', 'b', 'c']
 letters[1:] = ['c', 'd']
 range(10) # [0,1,2,3,4,5,6,7,8,9]
@@ -139,7 +139,7 @@ range(10) # [0,1,2,3,4,5,6,7,8,9]
 	  \item[Strings] are a lot like lists in Python.
 	  \item[Assignment] to slices is not allowed, however.
 	\end{description}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+	\begin{minted}{python}
 words = "This is a sentence."
 words[8]         # a
 words[5:7]       # is
@@ -158,7 +158,7 @@ len(words)       # 19
 	  \item[def] is the keyword for defining a function.
 	  \item[Parameters] can be given defaults, so that they are optional.
 	\end{description}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+	\begin{minted}{python}
 def axn(x, a=1, n=2):
 	return a*(x**n)    # ax^n
  
@@ -174,7 +174,7 @@ axn(3, n=3)  # 27
 	\begin{description}
 	  \item[Comprehensions] are quick ways of creating lists from other lists.
 	\end{description}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+	\begin{minted}{python}
 nos = range(5) # [0, 1, 2, 3, 4]
 squares = [i*i for i in nos] # [0, 1, 4, 9, 16]
 oddsqs = [i*i for i in nos if i % 2 == 1] # [1, 9]
@@ -189,7 +189,7 @@ oddsqs = [i*i for i in nos if i % 2 == 1] # [1, 9]
 	  \item[map()] takes a function and a list.
 	  \item[New list] -- it returns a new generator, which is the original list with the function applied to each element.
 	\end{description}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+	\begin{minted}{python}
 map(len, words)
 list(map(len, words))
   \end{minted}
@@ -202,7 +202,7 @@ list(map(len, words))
 	  \item[lambda] functions are short, inline functions.
 	  \item[Nameless] -- lambda functions need not have a name.
 	\end{description}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+	\begin{minted}{python}
 lambda x: x + n
   \end{minted}
 	\citeurl{docs.python.org/3/tutorial}
@@ -211,7 +211,7 @@ lambda x: x + n
 
 
 \begin{frame}[fragile]{Without generators}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+	\begin{minted}{python}
 # Build and return a list
 def firstn(n):
     num, nums = 0, []
@@ -226,7 +226,7 @@ sum_of_first_n = sum(firstn(1000000))
 \end{frame}
 
 \begin{frame}[fragile]{With generators}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+	\begin{minted}{python}
 # yields items instead of returning a list
 def firstn(n):
     num = 0
@@ -346,14 +346,14 @@ sum_of_first_n = sum(firstn(1000000))
 \end{frame}
 
 \begin{frame}[fragile]{Conundrum -- Naive method}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+	\begin{minted}{python}
 for permutation in permutations(letters):
   checkIfWord(permutation)
   \end{minted}
 \end{frame}
 
 \begin{frame}[fragile]{Conundrum -- Quick method preparation}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+	\begin{minted}{python}
 worddict = {}
 
 for word in dictionaryOfWords:
@@ -366,7 +366,7 @@ for word in dictionaryOfWords:
 \end{frame}
 
 \begin{frame}[fragile]{Conundrum -- Quick method checking}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+	\begin{minted}{python}
 word = "conundrum"
 sortword = sorted(list(word))
 hashword = hash(sortword)
@@ -377,8 +377,9 @@ worddict.get(hashword, None)
 
 
 \section{Timing Algorithms}
+
 \begin{frame}[fragile]{timeit command line}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{bash}
+	\begin{minted}{bash}
 $ python -m timeit '"-".join(str(n) for n in range(100))'
 10000 loops, best of 3: 30.2 usec per loop
 $ python -m timeit '"-".join([str(n) for n in range(100)])'
@@ -390,7 +391,7 @@ $ python -m timeit '"-".join(map(str, range(100)))'
 \end{frame}
 
 \begin{frame}[fragile]{timeit module}
-	\begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+	\begin{minted}{python}
 import timeit
 
 def test():
@@ -414,7 +415,7 @@ if __name__ == '__main__':
     \begin{column}{0.2\textwidth}
       \includegraphics[width=1.2in]{img/john-mccarthy.png}
     \end{column}
-    \begin{column}{0.7\textwidth}
+    \begin{column}{0.68\textwidth}
       \begin{itemize}
         \item John McCarthy while at MIT -- late 1950s.
         \vspace{0.25cm}
@@ -430,14 +431,14 @@ if __name__ == '__main__':
 \end{frame}
 
 \begin{frame}[fragile]{Wasteful for loops}
-  \begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+  \begin{minted}{python}
 # How do you parallelise this?
 inds = list(range(10))
 total = 0
 for i in inds:
   total = total + (i * 7)
   \end{minted}
-  \begin{minted}[linenos, frame=lines, framesep=2mm]{python}
+  \begin{minted}{python}
 def byseven(i):
   return i * 7
 
@@ -469,7 +470,7 @@ total = sum(sevens)
 \end{frame}
 
 \begin{frame}[fragile]{Basic operators}
-\begin{minted}[frame=lines, framesep=2mm]{scheme}
+\begin{minted}{scheme}
 > (+ 3 4)
 7
 > (* 3 2)
@@ -482,7 +483,7 @@ total = sum(sevens)
 \end{frame}
 
 \begin{frame}[fragile]{More arguments}
-\begin{minted}[frame=lines, framesep=2mm]{scheme}
+\begin{minted}{scheme}
 > (+ 3 4 5)
 (+ 3 4 5)
 > (- 3 4 5)
@@ -498,7 +499,7 @@ total = sum(sevens)
 
 
 \begin{frame}[fragile]{Functions and values}
-\begin{minted}[frame=lines, framesep=2mm]{scheme}
+\begin{minted}{scheme}
 ; Define a value called foo with value 3.
 >(define foo 3)
 
@@ -516,7 +517,7 @@ total = sum(sevens)
 \end{frame}
 
 \begin{frame}[fragile]{Conditionals}
-  \begin{minted}[frame=lines, framesep=2mm]{scheme}
+  \begin{minted}{scheme}
 > (if (< 1 2) '(y e s) '(n o))
 (y e s)
 
@@ -531,7 +532,7 @@ total = sum(sevens)
 
 
 \begin{frame}[fragile]{Lists}
-  \begin{minted}[frame=lines, framesep=2mm]{scheme}
+  \begin{minted}{scheme}
 >(list 1 2 3)
 (1 2 3)
 
@@ -545,7 +546,7 @@ total = sum(sevens)
 \end{frame}
 
 \begin{frame}[fragile]{car and cdr}
-  \begin{minted}[frame=lines, framesep=2mm]{scheme}
+  \begin{minted}{scheme}
 > (car (list 1 2 3))
 1
 > (cdr (list 1 2 3))
@@ -564,7 +565,7 @@ total = sum(sevens)
 \end{frame}
 
 \begin{frame}[fragile]{Recursion}
-  \begin{minted}[frame=lines, framesep=2mm]{scheme}
+  \begin{minted}{scheme}
 > (define (sum lv)              
     (if (null? lv)
       0
@@ -582,7 +583,7 @@ total = sum(sevens)
 \end{frame}
 
 \begin{frame}[fragile]{Looping recursively}
-\begin{minted}[frame=lines, framesep=2mm]{scheme}
+\begin{minted}{scheme}
 > (let loop ((i 5))
 (print "i is " i ".\n")
 (if (> i 0) (loop (- i 1))))
@@ -597,7 +598,7 @@ i is 0.
 \end{frame}
 
 \begin{frame}[fragile]{Data and code}
-\begin{minted}[frame=lines, framesep=2mm]{scheme}
+\begin{minted}{scheme}
 > (define (swap3-1-2 x)
   (list (cadr x) (car x) (caddr x)))
 
@@ -615,7 +616,7 @@ i is 0.
 \end{frame}
 
 \begin{frame}[fragile]{More on functions}
-\begin{minted}[frame=lines, framesep=2mm]{scheme}
+\begin{minted}{scheme}
 ; Printing stuff to terminal.
 > (print "Ay" "-" "yo.\n")
 ; Proper way to define a function.
@@ -633,7 +634,7 @@ Bar is open.
 \end{frame}
 
 \begin{frame}[fragile]{Function example}
-  \begin{minted}[frame=lines, framesep=2mm]{scheme}
+  \begin{minted}{scheme}
 > (define l 
     (let
       ((d 4) (e 5))
@@ -647,7 +648,7 @@ Bar is open.
 \end{frame}
 
 \begin{frame}[fragile]{cons}
-\begin{minted}[frame=lines, framesep=2mm]{scheme}
+\begin{minted}{scheme}
 > (cons 1 '())
 (1)
 > (cons 1 (cons 2 null))
@@ -666,7 +667,7 @@ Bar is open.
 \end{frame}
 
 \begin{frame}[fragile]{More on lists}
-\begin{minted}[frame=lines, framesep=2mm]{scheme}
+\begin{minted}{scheme}
 > (list "a" "b" "c")
 ("a" "b" "c")
 > (list a b c)
@@ -683,7 +684,7 @@ reference to undefined identifier: a
 \end{frame}
 
 \begin{frame}[fragile]{Quoting}
-\begin{minted}[frame=lines, framesep=2mm]{scheme}
+\begin{minted}{scheme}
 > (list a b c)
 *** ERROR IN (console)@1.7--Unbound variable: a
 > (quote (a b c))
@@ -702,7 +703,7 @@ reference to undefined identifier: a
 \end{frame}
 
 \begin{frame}[fragile]{Null list}
-\begin{minted}[frame=lines, framesep=2mm]{scheme}
+\begin{minted}{scheme}
 > ()
 missing procedure expression
 > (list)
@@ -718,7 +719,7 @@ null
 \end{frame}
 
 \begin{frame}[fragile]{Closures}
-\begin{minted}[frame=lines, framesep=2mm]{scheme}
+\begin{minted}{scheme}
 > (define (container value)
 (lambda ()
 (string-append "This container contains " value ".")))
@@ -886,7 +887,6 @@ function blank(i) {
 
 \begin{frame}[fragile]{Turing's Second Example: JavaScript 4}
 \begin{minted}{javascript}
-// State.
 function b() {
 	write('e');
 	pos++;

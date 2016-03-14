@@ -1,6 +1,9 @@
+\RequirePackage{currfile}
+
 \documentclass[usenames,xcolor={dvipsnames}]{beamer}
 
 \usepackage{xcolor}
+\usepackage{lmodern}
 \usepackage{minted}
 \usepackage[utf8]{inputenc}
 \usepackage{standalone}
@@ -15,40 +18,15 @@
 \usetikzlibrary{mindmap,shadows, arrows, positioning, chains,fit,shapes}
 
 \usetheme{metropolis}
-\usemintedstyle{pastie}
+\usemintedstyle{manni}
+\setminted{bgcolor=gmitgrey!5,frame=lines}
 
-\definecolor{gmitblue}{RGB}{18,124,201}
-\definecolor{gmitred}{RGB}{108,16,38}
+\definecolor{gmitblue}{RGB}{20,134,225}
+\definecolor{gmitred}{RGB}{220,20,60}
 \definecolor{gmitgrey}{RGB}{67,67,67}
 
-\hypersetup{
-  colorlinks=true,
-  linkcolor=gray,   
-  urlcolor=gray
-}
-
-\defbeamertemplate*{title page}{customized}[1][]{
-	\vspace{2cm}
-  \begin{center} \Huge \textcolor{gmitblue} \inserttitle \end{center}
-	\begin{center} \Large \textcolor{gmitblue} \insertsubtitle \end{center}
-	\vspace{1cm}
-	\begin{center} \small \textcolor{gmitgrey} \insertauthor \end{center}
-	\begin{center} \small \textcolor{gmitgrey} \insertdate \end{center}
-}
-
-
 \setbeamercolor{structure}{fg=gmitblue}
-\setbeamercolor{frametitle}{fg=white, bg=gmitblue}
-
-
-\setbeamertemplate{section page}
-{
-	\vspace{0.5in}
-  \begin{center}
-  \textcolor{gmitblue}{\Huge \secname}
-  \end{center}
-}
-
+\setbeamercolor{frametitle}{fg=white, bg=gmitred}
 \setbeamercolor{alerted text}{fg=gmitblue}
 
 \AtBeginSection{\frame{\sectionpage}}
@@ -56,13 +34,6 @@
 \renewcommand\footnoterule{}
 \newcommand{\citeurl}[1]{\let\thefootnote\relax\footnotetext{\tiny \textit{\textcolor{gray}{\href{http://#1}{#1}}}}}
 
-
-\tikzstyle{rect} = [rectangle, fill=ProcessBlue, text width=4.5em, text centered, minimum height=4em, rounded corners]
-\tikzstyle{line} = [draw, ->, very thick]
-\tikzstyle{oval} = [ellipse, fill=SeaGreen, text width=5em, text centered]
-
 \begin{document}
-
   \input{content.tex}
-
 \end{document}

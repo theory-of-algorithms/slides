@@ -685,11 +685,11 @@ reference to undefined identifier: a
 \begin{frame}[fragile]{Quoting}
 \begin{minted}[frame=lines, framesep=2mm]{scheme}
 > (list a b c)
-*** ERROR IN (console)@41.7 -- Unbound variable: a
+*** ERROR IN (console)@1.7--Unbound variable: a
 > (quote (a b c))
 (a b c)
 > (quote a b c)
-*** ERROR IN (console)@42.1 -- Ill-formed special form: quote
+*** ERROR IN (console)@2.1--Ill-formed special form: quote
 > '(a b c) 
 (a b c)
 > (define forty-two '(* 6 9))
@@ -827,6 +827,80 @@ null
   \end{table}
   
   \[ \delta(q_i, g_n) \rightarrow (q_j, g_m, L/R) \]
+\end{frame}
+
+\begin{frame}{Turing's Second Example}
+  \begin{block}{A slightly more difficult example}
+    We can construct a machine to compute the sequence
+    \[ 001011011101111011111 \ldots \]
+    The machine is to be capable of five $m$-configurations, viz. $o$, $q$, $p$, $f$, $b$ and of printing $a$, $x$, $0$, $1$.
+    The first three symbols on the tape will be $aaO$; the other figures follow on alternate squares.
+    On the intermediate squares we never print anything but $x$.
+    These letters serve to keep the place for us and are erased when we have finished with them.
+    We also arrange that in the sequence of figures on alternate squares there shall be no blanks.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Turing's Second Example: Table}
+  \includegraphics[width=9.5cm]{img/turing-table-2.png}
+\end{frame}
+
+\begin{frame}[fragile]{Turing's Second Example: JavaScript 1}
+\begin{minted}{javascript}
+// The contents of the tape.
+var tape = []
+s// The current position of the machine on the tape.
+var pos = 0
+// The current state;
+var state = b;
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Turing's Second Example: JavaScript 2}
+\begin{minted}{javascript}
+// Writes a symbol to the current cell on the tape.
+function write(sym) {
+	tape[pos] = sym;
+}
+
+// Returns true iff the symbol in the current cell is sym.
+function read(sym) {
+	return sym == tape[pos] ? true : false;
+}
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Turing's Second Example: JavaScript 3}
+\begin{minted}{javascript}
+// Erases the symbol in the current cell of the tape.
+function erase() {
+	delete tape[pos];
+}
+
+// Returns true iff the current cell is blank.
+function blank(i) {
+	return typeof(tape[i]) == 'undefined' ? true : false;
+}
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Turing's Second Example: JavaScript 4}
+\begin{minted}{javascript}
+// State.
+function b() {
+	write('e');
+	pos++;
+	write('e');
+	pos++;
+	write('0');
+	pos++;
+	pos++;
+	write('0');
+	pos--;
+	pos--;
+	state = o;
+}
+\end{minted}
 \end{frame}
 
 \begin{frame}{Languages}

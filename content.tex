@@ -7,12 +7,12 @@
 
 
 \begin{frame}
-	\titlepage
+  \titlepage
 \end{frame}
 
 \begin{frame}
-	\frametitle{Topics}
-	\tableofcontents
+  \frametitle{Topics}
+  \tableofcontents
 \end{frame}
 
 \section{Python}
@@ -46,11 +46,11 @@
     \end{column}
     \begin{column}{0.6\textwidth}
       \begin{itemize}
-    		\item Started Python as a hobby.
+        \item Started Python as a hobby.
         \vspace{0.25cm}
-    		\item Worked for Google, half-time spent on Python.
+        \item Worked for Google, half-time spent on Python.
         \vspace{0.25cm}
-    		\item Now works at Dropbox.
+        \item Now works at Dropbox.
         \vspace{0.25cm}
         \item Benevolent dictator for life (BDFL).
       \end{itemize}
@@ -118,15 +118,15 @@ def fib(n):
 \end{frame}
 
 \begin{frame}[fragile]{Lists}
-	\begin{description}
-		\item[Lists] in Python are usually written as comma-separated values between square brackets.
-		\item[Types] -- elements of a list don't have to have the same types.
-		\item[Slicing] is possible, where we take a sublist of the list.
-		\item[Assignment] to slices is possible.
-		\item[len()] is a built-in function that returns the length of a list.
-		\item[range()] is a built-in function that returns a list of numbers. Note: it returns an \emph{iterator}.
-	\end{description}
-	\begin{minted}{python}
+  \begin{description}
+    \item[Lists] in Python are usually written as comma-separated values between square brackets.
+    \item[Types] -- elements of a list don't have to have the same types.
+    \item[Slicing] is possible, where we take a sublist of the list.
+    \item[Assignment] to slices is possible.
+    \item[len()] is a built-in function that returns the length of a list.
+    \item[range()] is a built-in function that returns a list of numbers. Note: it returns an \emph{iterator}.
+  \end{description}
+  \begin{minted}{python}
 letters = ['a', 'b', 'c']
 letters[1:] = ['c', 'd']
 range(10) # [0,1,2,3,4,5,6,7,8,9]
@@ -135,11 +135,11 @@ range(10) # [0,1,2,3,4,5,6,7,8,9]
 \end{frame}
 
 \begin{frame}[fragile]{Strings}
-	\begin{description}
-	  \item[Strings] are a lot like lists in Python.
-	  \item[Assignment] to slices is not allowed, however.
-	\end{description}
-	\begin{minted}{python}
+  \begin{description}
+    \item[Strings] are a lot like lists in Python.
+    \item[Assignment] to slices is not allowed, however.
+  \end{description}
+  \begin{minted}{python}
 words = "This is a sentence."
 words[8]         # a
 words[5:7]       # is
@@ -150,68 +150,68 @@ words[17:9:-1]   # ecnetnes
 len(words)       # 19
 "One" + "Two"    # OneTwo
   \end{minted}
-	\citeurl{docs.python.org/3/tutorial}
+  \citeurl{docs.python.org/3/tutorial}
 \end{frame}
 
 \begin{frame}[fragile]{Functions}
-	\begin{description}
-	  \item[def] is the keyword for defining a function.
-	  \item[Parameters] can be given defaults, so that they are optional.
-	\end{description}
-	\begin{minted}{python}
+  \begin{description}
+    \item[def] is the keyword for defining a function.
+    \item[Parameters] can be given defaults, so that they are optional.
+  \end{description}
+  \begin{minted}{python}
 def axn(x, a=1, n=2):
-	return a*(x**n)    # ax^n
+  return a*(x**n)    # ax^n
  
 axn(3)       # 9
 axn(3, 2)    # 18
 axn(3, 2, 3) # 54
 axn(3, n=3)  # 27
   \end{minted}
-	\citeurl{docs.python.org/3/tutorial}
+  \citeurl{docs.python.org/3/tutorial}
 \end{frame}
 
 \begin{frame}[fragile]{List comprehensions}
-	\begin{description}
-	  \item[Comprehensions] are quick ways of creating lists from other lists.
-	\end{description}
-	\begin{minted}{python}
+  \begin{description}
+    \item[Comprehensions] are quick ways of creating lists from other lists.
+  \end{description}
+  \begin{minted}{python}
 nos = range(5) # [0, 1, 2, 3, 4]
 squares = [i*i for i in nos] # [0, 1, 4, 9, 16]
 oddsqs = [i*i for i in nos if i % 2 == 1] # [1, 9]
   \end{minted}
-	\citeurl{docs.python.org/3/tutorial}
+  \citeurl{docs.python.org/3/tutorial}
 \end{frame}
 
 
 
 \begin{frame}[fragile]{map()}
-	\begin{description}
-	  \item[map()] takes a function and a list.
-	  \item[New list] -- it returns a new generator, which is the original list with the function applied to each element.
-	\end{description}
-	\begin{minted}{python}
+  \begin{description}
+    \item[map()] takes a function and a list.
+    \item[New list] -- it returns a new generator, which is the original list with the function applied to each element.
+  \end{description}
+  \begin{minted}{python}
 map(len, words)
 list(map(len, words))
   \end{minted}
-	\citeurl{docs.python.org/3/tutorial}
+  \citeurl{docs.python.org/3/tutorial}
 \end{frame}
 
 
 \begin{frame}[fragile]{Lambda functions}
-	\begin{description}
-	  \item[lambda] functions are short, inline functions.
-	  \item[Nameless] -- lambda functions need not have a name.
-	\end{description}
-	\begin{minted}{python}
+  \begin{description}
+    \item[lambda] functions are short, inline functions.
+    \item[Nameless] -- lambda functions need not have a name.
+  \end{description}
+  \begin{minted}{python}
 lambda x: x + n
   \end{minted}
-	\citeurl{docs.python.org/3/tutorial}
+  \citeurl{docs.python.org/3/tutorial}
 \end{frame}
 
 
 
 \begin{frame}[fragile]{Without generators}
-	\begin{minted}{python}
+  \begin{minted}{python}
 # Build and return a list
 def firstn(n):
     num, nums = 0, []
@@ -222,11 +222,11 @@ def firstn(n):
 
 sum_of_first_n = sum(firstn(1000000))
   \end{minted}
-	\citeurl{https://wiki.python.org/moin/Generators}
+  \citeurl{https://wiki.python.org/moin/Generators}
 \end{frame}
 
 \begin{frame}[fragile]{With generators}
-	\begin{minted}{python}
+  \begin{minted}{python}
 # yields items instead of returning a list
 def firstn(n):
     num = 0
@@ -236,124 +236,124 @@ def firstn(n):
 
 sum_of_first_n = sum(firstn(1000000))
   \end{minted}
-	\citeurl{https://wiki.python.org/moin/Generators}
+  \citeurl{https://wiki.python.org/moin/Generators}
 \end{frame}
 
 \section{Permutations}
 
 
 \begin{frame}{Permutations}
-	\begin{description}
-		\item[Permutations] are rearrangements of ordered collections of items.
-		\item[Example:] ``abcd'' is a rearrangement of ``bacd''.
-		\item[Think] of having a four boxes, where we have to place one of the items in each box.
-		\item[What] are all the different ways of doing this?
-		\item[What] are all the different ways of associating items with boxes?
-	\end{description}
+  \begin{description}
+    \item[Permutations] are rearrangements of ordered collections of items.
+    \item[Example:] ``abcd'' is a rearrangement of ``bacd''.
+    \item[Think] of having a four boxes, where we have to place one of the items in each box.
+    \item[What] are all the different ways of doing this?
+    \item[What] are all the different ways of associating items with boxes?
+  \end{description}
 \end{frame}
 
 \begin{frame}{Abstraction}
-		We can consider permutations in abstraction.
-		For instance, if we have four items to rearrange, we can label the first item 1, the second 2, and so on.
-		Then we can represent the various permutations, in terms of the numbers associated with the items.
-		The permutations ``abcd'' and ``bacd'' could be represented by:
-			\[ \left( \begin{array}{cccc} 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ \end{array} \right) 
-    			\qquad \textrm{and} \qquad
+    We can consider permutations in abstraction.
+    For instance, if we have four items to rearrange, we can label the first item 1, the second 2, and so on.
+    Then we can represent the various permutations, in terms of the numbers associated with the items.
+    The permutations ``abcd'' and ``bacd'' could be represented by:
+      \[ \left( \begin{array}{cccc} 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ \end{array} \right) 
+          \qquad \textrm{and} \qquad
          \left( \begin{array}{cccc} 1 & 2 & 3 & 4 \\ 2 & 1 & 3 & 4 \\ \end{array} \right) \]
-		In this way we can consider permutations in their own right.
+    In this way we can consider permutations in their own right.
 \end{frame}
 
 
 \begin{frame}[fragile]{Counting permutations}
-	\begin{block}{With four items, how many distinct permutations are there?}
-		Consider having four placeholders where we can place the items:
-		\[ \textbf{\fbox{?}} \  \textbf{\fbox{?}} \  \textbf{\fbox{?}} \  \textbf{\fbox{?}} \]
-		
-		When we place an item in the first box, we have four choices, then we are left with only three choice for the second, two choices for the third, and one choice (i.e.\ not a choice at all) for the last.
+  \begin{block}{With four items, how many distinct permutations are there?}
+    Consider having four placeholders where we can place the items:
+    \[ \textbf{\fbox{?}} \  \textbf{\fbox{?}} \  \textbf{\fbox{?}} \  \textbf{\fbox{?}} \]
+    
+    When we place an item in the first box, we have four choices, then we are left with only three choice for the second, two choices for the third, and one choice (i.e.\ not a choice at all) for the last.
 
-	So for there are $4 \times 3 \times 2 \times 1 = 4!$ choices in total.
-	\end{block}
+  So for there are $4 \times 3 \times 2 \times 1 = 4!$ choices in total.
+  \end{block}
 
 
 \end{frame}
 
 \begin{frame}[fragile]{Counting anagrams}
-	\begin{block}{Repitition}
-		What happens when we consider two of our items to be the same?
-		For instance, what if we are looking for all distinct rearrangements of ``aacd'' as opposed to ``abcd''?
-	In that case we need to account for the rearrangements of those items by dividing by the factorial of the number of times each item is repeated: $\frac{4!}{2!}$.
-	\end{block}
-	
-	If more than one item is repeated a number of times we just keep dividing by the factorials of the numbers of repititons.
-	The distinct number of rearrangements of ``aaabbcd'' is $\frac{7!}{3!2!}$.
+  \begin{block}{Repitition}
+    What happens when we consider two of our items to be the same?
+    For instance, what if we are looking for all distinct rearrangements of ``aacd'' as opposed to ``abcd''?
+  In that case we need to account for the rearrangements of those items by dividing by the factorial of the number of times each item is repeated: $\frac{4!}{2!}$.
+  \end{block}
+  
+  If more than one item is repeated a number of times we just keep dividing by the factorials of the numbers of repititons.
+  The distinct number of rearrangements of ``aaabbcd'' is $\frac{7!}{3!2!}$.
 
-	\begin{block}{Exercise}
-		Calculate the number of distinct rearragements of the word ``Mississippi''.
-	\end{block}
+  \begin{block}{Exercise}
+    Calculate the number of distinct rearragements of the word ``Mississippi''.
+  \end{block}
 \end{frame}
 
 
 \begin{frame}[fragile]{Heap's algorithm}
-	\begin{description}
-		\item[Heap] published an algorithm in November 1963 for generating permutations.
-		\item[Published] in The Computer Journal.
-		\item[Read] the article in the link below -- it's an easy read.
-		\item[Pairs] of items are interchanged to generate each new permutation.
-		\item[Induction] is used to show the algorithm works.
-	\end{description}
-	\citeurl{comjnl.oxfordjournals.org/content/6/3/293.full.pdf}
+  \begin{description}
+    \item[Heap] published an algorithm in November 1963 for generating permutations.
+    \item[Published] in The Computer Journal.
+    \item[Read] the article in the link below -- it's an easy read.
+    \item[Pairs] of items are interchanged to generate each new permutation.
+    \item[Induction] is used to show the algorithm works.
+  \end{description}
+  \citeurl{comjnl.oxfordjournals.org/content/6/3/293.full.pdf}
 \end{frame}
 
 \begin{frame}[fragile]{Heap's algorithm description}
-	\begin{itemize}
-		\item Suppose we know how to permute $(n-1)$ items.
-		\item That is, we know all of the different ways of slotting $(n-1)$ items in $(n-1)$ boxes.
-		\item Let's add another, $n^{th}$ item, and another box, an $n^{th}$ box.
-		\item First, place the $n^{th}$ item in the $n^{th}$ box.
-		\item Permute all the the other items, which you know how to do.
-		\item Then swap another item with the $n^{th}$ item.
-		\item Again permute the items in boxes $1$ to $(n-1)$.
-		\item Swap the item in the $n^{th}$ box with another, different item.
-		\item Repeat until all items have been in box $n$.
-	\end{itemize}
-	\citeurl{comjnl.oxfordjournals.org/content/6/3/293.full.pdf}
+  \begin{itemize}
+    \item Suppose we know how to permute $(n-1)$ items.
+    \item That is, we know all of the different ways of slotting $(n-1)$ items in $(n-1)$ boxes.
+    \item Let's add another, $n^{th}$ item, and another box, an $n^{th}$ box.
+    \item First, place the $n^{th}$ item in the $n^{th}$ box.
+    \item Permute all the the other items, which you know how to do.
+    \item Then swap another item with the $n^{th}$ item.
+    \item Again permute the items in boxes $1$ to $(n-1)$.
+    \item Swap the item in the $n^{th}$ box with another, different item.
+    \item Repeat until all items have been in box $n$.
+  \end{itemize}
+  \citeurl{comjnl.oxfordjournals.org/content/6/3/293.full.pdf}
 \end{frame}
 
 \begin{frame}{Steinhaus-Johnson-Trotter algorithm}
-	\begin{description}
-		\item[Johnson] published another algorithm in 1963 for generating permutations.
-		\item[Attributed] to three people: Steinhaus, Johnson and Trotter.
-		\item[See] the article in the link below -- it's a trickier read.
-		\item[Pairwise] -- the algorithm can be done pair-wise, like Heap's.
-		\item[Induction] is used to show the algorithm works.
-	\end{description}
-	\citeurl{www.ams.org/journals/mcom/1963-17-083/S0025-5718-1963-0159764-2/S0025-5718-1963-0159764-2.pdf}
+  \begin{description}
+    \item[Johnson] published another algorithm in 1963 for generating permutations.
+    \item[Attributed] to three people: Steinhaus, Johnson and Trotter.
+    \item[See] the article in the link below -- it's a trickier read.
+    \item[Pairwise] -- the algorithm can be done pair-wise, like Heap's.
+    \item[Induction] is used to show the algorithm works.
+  \end{description}
+  \citeurl{www.ams.org/journals/mcom/1963-17-083/S0025-5718-1963-0159764-2/S0025-5718-1963-0159764-2.pdf}
 \end{frame}
 
 \begin{frame}[fragile]{Steinhaus-Johnson-Trotter algorithm description}
-	\begin{itemize}
-		\item Start with two items, $1$ and $2$, and generate their list of permutations $12$ and $21$.
-		\item Use the two-item list to generate the three item list in the following way:
-		\begin{itemize}
-			\item Place $3$ at the right of the first element in the two-item list.
-			\item Then move $3$ one place to the left continuosly until its on the left.
-			\item Then place $3$ at the left of the next element in the two-item list.
-			\item move $3$ one place to the right continuously until it reaches the right.
-		\end{itemize}
-		\item Use the three item list to generate the four item list in the same way, and so on.
-	\end{itemize}
-	\citeurl{comjnl.oxfordjournals.org/content/6/3/293.full.pdf}
+  \begin{itemize}
+    \item Start with two items, $1$ and $2$, and generate their list of permutations $12$ and $21$.
+    \item Use the two-item list to generate the three item list in the following way:
+    \begin{itemize}
+      \item Place $3$ at the right of the first element in the two-item list.
+      \item Then move $3$ one place to the left continuosly until its on the left.
+      \item Then place $3$ at the left of the next element in the two-item list.
+      \item move $3$ one place to the right continuously until it reaches the right.
+    \end{itemize}
+    \item Use the three item list to generate the four item list in the same way, and so on.
+  \end{itemize}
+  \citeurl{comjnl.oxfordjournals.org/content/6/3/293.full.pdf}
 \end{frame}
 
 \begin{frame}[fragile]{Conundrum -- Naive method}
-	\begin{minted}{python}
+  \begin{minted}{python}
 for permutation in permutations(letters):
   checkIfWord(permutation)
   \end{minted}
 \end{frame}
 
 \begin{frame}[fragile]{Conundrum -- Quick method preparation}
-	\begin{minted}{python}
+  \begin{minted}{python}
 worddict = {}
 
 for word in dictionaryOfWords:
@@ -366,7 +366,7 @@ for word in dictionaryOfWords:
 \end{frame}
 
 \begin{frame}[fragile]{Conundrum -- Quick method checking}
-	\begin{minted}{python}
+  \begin{minted}{python}
 word = "conundrum"
 sortword = sorted(list(word))
 hashword = hash(sortword)
@@ -379,7 +379,7 @@ worddict.get(hashword, None)
 \section{Timing Algorithms}
 
 \begin{frame}[fragile]{timeit command line}
-	\begin{minted}{bash}
+  \begin{minted}{bash}
 $ python -m timeit '"-".join(str(n) for n in range(100))'
 10000 loops, best of 3: 30.2 usec per loop
 $ python -m timeit '"-".join([str(n) for n in range(100)])'
@@ -387,11 +387,11 @@ $ python -m timeit '"-".join([str(n) for n in range(100)])'
 $ python -m timeit '"-".join(map(str, range(100)))'
 10000 loops, best of 3: 23.2 usec per loop
   \end{minted}
-	\citeurl{docs.python.org/3/library/timeit.html}
+  \citeurl{docs.python.org/3/library/timeit.html}
 \end{frame}
 
 \begin{frame}[fragile]{timeit module}
-	\begin{minted}{python}
+  \begin{minted}{python}
 import timeit
 
 def test():
@@ -403,7 +403,7 @@ if __name__ == '__main__':
     print(timeit.timeit("test()",
             setup="from __main__ import test"))
   \end{minted}
-	\citeurl{docs.python.org/3/library/timeit.html}
+  \citeurl{docs.python.org/3/library/timeit.html}
 \end{frame}
 
 
@@ -503,7 +503,7 @@ total = sum(sevens)
 ; Define a value called foo with value 3.
 >(define foo 3)
 
-; Define a function f.	
+; Define a function f.  
 >(define (f x)
   (+ (* 3 x) 12))
 
@@ -812,7 +812,7 @@ null
     \centering
     \begin{tabular}{cc|ccc}
       \toprule
-      State	& Input	& Write & Move & Next \\
+      State  & Input  & Write & Move & Next \\
       \midrule
       \multirow{3}{*}{0} 
       & B & B &  & Accept \\
@@ -861,12 +861,12 @@ var state = b;
 \begin{minted}{javascript}
 // Writes a symbol to the current cell on the tape.
 function write(sym) {
-	tape[pos] = sym;
+  tape[pos] = sym;
 }
 
-// Returns true iff the symbol in the current cell is sym.
+// Returns true iff the current cell contains sym.
 function read(sym) {
-	return sym == tape[pos] ? true : false;
+  return sym == tape[pos] ? true : false;
 }
 \end{minted}
 \end{frame}
@@ -875,12 +875,14 @@ function read(sym) {
 \begin{minted}{javascript}
 // Erases the symbol in the current cell of the tape.
 function erase() {
-	delete tape[pos];
+  delete tape[pos];
 }
 
 // Returns true iff the current cell is blank.
-function blank(i) {
-	return typeof(tape[i]) == 'undefined' ? true : false;
+// Returns true iff the current cell is blank.
+function blank() {
+  return typeof(tape[pos])
+    == 'undefined' ? true : false;
 }
 \end{minted}
 \end{frame}
@@ -888,17 +890,17 @@ function blank(i) {
 \begin{frame}[fragile]{Turing's Second Example: JavaScript 4}
 \begin{minted}{javascript}
 function b() {
-	write('e');
-	pos++;
-	write('e');
-	pos++;
-	write('0');
-	pos++;
-	pos++;
-	write('0');
-	pos--;
-	pos--;
-	state = o;
+  write('e');
+  pos++;
+  write('e');
+  pos++;
+  write('0');
+  pos++;
+  pos++;
+  write('0');
+  pos--;
+  pos--;
+  state = o;
 }
 \end{minted}
 \end{frame}
@@ -908,7 +910,7 @@ function b() {
     \item[Alphabet] Finite set of symbols, denoted $\Sigma$.
     \item[Word] Sequence of symbols, $w$ from $\Sigma$.
     \item[Language] Set of words, denoted $L$.
-    \item[Length] Of a word, denoted $|w|$	.
+    \item[Length] Of a word, denoted $|w|$  .
     \item[Empty word] Unique word of length 0, denoted $\lambda$.
   \end{description}
 \end{frame}

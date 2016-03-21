@@ -1,6 +1,6 @@
-\RequirePackage{currfile}
+\documentclass{beamer}
 
-\documentclass[usenames,xcolor={dvipsnames}]{beamer}
+\usetheme{metropolis}
 
 \usepackage{xcolor}
 \usepackage{lmodern}
@@ -15,11 +15,10 @@
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{array}
-\usetikzlibrary{mindmap,shadows, arrows, positioning, chains,fit,shapes}
+\usepackage{xspace}
+\usetikzlibrary{mindmap,shadows,arrows,positioning,chains,fit,shapes}
 
-\usetheme{metropolis}
 \usemintedstyle{manni}
-\setminted{bgcolor=gmitgrey!5,frame=lines}
 
 \definecolor{gmitblue}{RGB}{20,134,225}
 \definecolor{gmitred}{RGB}{220,20,60}
@@ -29,10 +28,8 @@
 \setbeamercolor{frametitle}{fg=white, bg=gmitred}
 \setbeamercolor{alerted text}{fg=gmitblue}
 
-\AtBeginSection{\frame{\sectionpage}}
-
 \renewcommand\footnoterule{}
-\newcommand{\citeurl}[1]{\let\thefootnote\relax\footnotetext{\tiny \textit{\textcolor{gray}{\href{http://#1}{#1}}}}}
+\newcommand{\citeurl}[1]{\let\thefootnote\relax\footnotetext{\tiny \textcolor{gmitgrey}{\href{http://#1}{#1}}}}
 
 \begin{document}
   \input{content.tex}

@@ -1,5 +1,11 @@
 %!TEX root = slides.tex
 
+%1. Scheme
+%2. Scala
+%3. Turing
+%4. NP
+
+
 \title{Theory of Algorithms}
 \subtitle{}
 \author{ian.mcloughlin@gmit.ie}
@@ -945,3 +951,82 @@ function b() {
 \end{frame}
 
 \section{Complexity Classes}
+
+\begin{frame}{Polynomial time}
+  \begin{definition}
+  An algorithm is said to be solvable in \emph{polynomial time} if the number of steps required to complete the algorithm for a given input is $O(n^k)$ for some nonnegative integer $k$, where $n$ is the complexity of the input.
+  \end{definition}
+  
+  \vspace{0.5cm}
+  \metroset{block=fill}
+  \begin{block}{$P$ complexity class}
+  The $P$ complexity class is the set of problems for which there exists, for each such problem, at least one algorithm to solve that problem in polynomial time.
+  \end{block}
+
+  \citeurl{mathworld.wolfram.com/P-Problem.html}
+\end{frame}
+
+\begin{frame}{Non-deterministic polynomial time}
+  \begin{definition}
+  A problem is in the $NP$ complexity class if it is solvable by a non-deterministic Turing machine in polynomial time. A non-deterministic Turing Machine is one which may not have a unique action to take for some or all states and inputs.
+  \end{definition}
+  
+  \vspace{0.5cm}
+  \metroset{block=fill}
+  \begin{block}{$P$ is a subset of $NP$}
+  The $P$ complexity class is a subset of $P$ because all polynomial time solvabled problems can be modelled using Nondeterministic Turing Machinses.
+  \end{block}
+
+  \citeurl{mathworld.wolfram.com/P-Problem.html}
+\end{frame}
+
+\begin{frame}{Decision problems}
+  \begin{description}
+    \item[Decision problems] are problems where the answer is 0 or 1.
+    \vspace{0.5cm}
+    \item[Restricting] ourselves to decision problems is convenient and fair.
+    \vspace{0.5cm}
+    \item[$f:\{0,1\}^n \rightarrow \{0,1\}$] is useful notation for considering decision problems.
+    \vspace{0.5cm}
+    \item[Other problems] can be easily (polynomial time) adapted into decision problems.
+  \end{description}
+\end{frame}
+
+\begin{frame}{$NP$-complete problems}
+  \begin{definition}
+    An problem is $NP$-hard if each other problem in $NP$ can be reduced to it in polynomial time.
+  \end{definition}
+  
+  \vspace{0.5cm}
+  {\metroset{block=fill}
+  \begin{block}{$NP$-hard problems are hard}
+  $NP$-hard problems are at least as hard to solve as the hardest $NP$ problems.
+  Note that $NP$-hard problems don't have to be $NP$.
+  \end{block}}
+  
+  \vspace{0.5cm}
+  \begin{definition}
+    An problem is $NP$-complete if it's in $NP$ and in $NP$-hard.
+  \end{definition}
+\end{frame}
+
+\begin{frame}{Subset sum problem}
+   
+   {\metroset{block=fill}
+  \begin{block}{Problem}
+    Given a set of integers $S$, is there a non-empty subset whose elements sum to zero?
+  \end{block}}
+
+  \vspace{0.5cm}
+  
+  \begin{block}{Example}
+    Does $\{ 1, 3, 7, -5, -13, 2, 9, -8 \}$ have such a subset?
+  \end{block}
+  
+  \vspace{0.5cm}
+
+  \begin{block}{Note}
+     If somebody suggests a soltuion, it is very quick to check it.
+    Being able to quickly verify a solution is a characteristic of $NP$ problems.
+  \end{block}
+\end{frame}

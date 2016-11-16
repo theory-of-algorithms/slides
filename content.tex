@@ -21,229 +21,265 @@
   \tableofcontents
 \end{frame}
 
-\section{Python}
 
 
-\begin{frame}{About Python}
-  \begin{description}
-    \item[January 1994] -- Python 1.0.0 released.
-    \vspace{0.25cm}
-    \item[Guido van Rossum] -- Designer/Author of Python.
-    \vspace{0.25cm}
-    \item[Current versions] -- 3.5.1 and 2.7.11.
-    \vspace{0.25cm}
-    \item[Interpreted] -- Python implementation must be present at runtime.
-    \vspace{0.25cm}
-    \item[Off-side rule] -- Blocks identified by indentation, as opposed to curly braces.
-    \vspace{0.25cm} 
-    \item[Popularity] -- IEEE Spectrum ranks it as the fourth most popular language (July 2015).
-    \vspace{0.25cm}
-    \item[Community] -- Python Enhancement Proposals, notably \href{https://www.python.org/dev/peps/pep-0008/}{PEP 8: The Python Style Guide}.
-    \vspace{0.25cm} 
-  \end{description}
-  \citeurl{spectrum.ieee.org/computing/software/the-2015-top-ten-programming-languages}
+\section{Functional programming}
+
+
+\section{Turing machines}
+
+\section{Computational complexity}
+
+
+\begin{frame}[fragile]{Exponential}
+  \begin{exampleblock}{How many numbers can we represent with $k$ bits?}
+    \begin{itemize}
+      \item Consider the case of four bits.
+      \item Imagine four placeholders:  \textbf{\fbox{?}}\textbf{\fbox{?}}\textbf{\fbox{?}}\textbf{\fbox{?}}
+      \item Each placeholder can contain either 0 or 1.
+      \item There are $2 \times 2 \times 2 \times 2 = 2^4 = 16$ different numbers.
+      \item Add another bit, how many numbers is it now?
+      \item It's $2 \times 2 \times 2 \times 2 \times 2 = 2^5 = 32$.
+      \item Generally $k$ bits can represent $2^k$ numbers.
+      \item This grows \textbf{exponentially} relative to $k$.
+    \end{itemize}
+  \end{exampleblock}
 \end{frame}
 
 
-\begin{frame}{Guido van Rossum}
-  \begin{columns}
-    \begin{column}{1.5in}
-      \includegraphics[width=1.4in]{img/guido_van_rossum.jpg}
-    \end{column}
-    \begin{column}{0.7\textwidth}
-      \begin{itemize}
-        \item Started Python as a hobby.
-        \vspace{0.25cm}
-        \item Worked for Google, half-time spent on Python.
-        \vspace{0.25cm}
-        \item Now works at Dropbox.
-        \vspace{0.25cm}
-        \item Benevolent dictator for life (BDFL).
-      \end{itemize}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}[fragile]{Conditions}
-  \begin{minted}{python}
-x = int(raw_input("Please enter an integer: "))
-if x < 0:
-  x = 0
-  print 'Negative changed to zero'
-elif x == 0:
-  print 'Zero'
-elif x == 1:
-  print 'Single'
-else:
-  print 'More'
-  \end{minted}
-  \citeurl{docs.python.org/2/tutorial}
-\end{frame}
-
-\begin{frame}[fragile]{Loops}
-  \begin{minted}{python}
-# A for loop.
-a = ['Mary', 'had', 'a', 'little', 'lamb']
-for i in range(len(a)):
-  print(i, a[i])
-  \end{minted}
-  \begin{minted}{python}
-# A while loop.
-a, b = 0, 1
-while b < 1000:
-  print(b)
-  a, b = b, a+b
-  \end{minted}
-  \citeurl{docs.python.org/3/tutorial}
-\end{frame}
-
-\begin{frame}[fragile]{Functions}
-  \begin{minted}{python}
-# write Fibonacci series up to n
-def fib(n):   
-  """Print a Fibonacci series up to n."""
-  a, b = 0, 1
-  while a < n:
-    print(a)
-    a, b = b, a+b
-  \end{minted}
-  \citeurl{docs.python.org/3/tutorial}
-\end{frame}
-
-\begin{frame}{CPython}
-  \begin{description}
-    \item[Reference implementation] -- Many different Python implementations exist.
-    \vspace{0.25cm}
-    \item[Version 3] -- Broke backwards compatibility (somewhat).
-    \vspace{0.25cm}
-    \item[Unladen Swallow] -- Google attempt to fix some Python problems.
-    \vspace{0.25cm}
-    \item[Modules] -- Lots of great Python modules available.
-  \end{description}
-  \citeurl{www.python.org}
-\end{frame}
-
-\begin{frame}[fragile]{Lists}
-  \begin{description}
-    \item[Lists] in Python are usually written as comma-separated values between square brackets.
-    \item[Types] -- elements of a list don't have to have the same types.
-    \item[Slicing] is possible, where we take a sublist of the list.
-    \item[Assignment] to slices is possible.
-    \item[len()] is a built-in function that returns the length of a list.
-    \item[range()] is a built-in function that returns a list of numbers. Note: it returns an \emph{iterator}.
-  \end{description}
-  \begin{minted}{python}
-letters = ['a', 'b', 'c']
-letters[1:] = ['c', 'd']
-range(10) # [0,1,2,3,4,5,6,7,8,9]
-  \end{minted}
-  \citeurl{docs.python.org/3/tutorial}
-\end{frame}
-
-\begin{frame}[fragile]{Strings}
-  \begin{description}
-    \item[Strings] are a lot like lists in Python.
-    \item[Assignment] to slices is not allowed, however.
-  \end{description}
-  \begin{minted}{python}
-words = "This is a sentence."
-words[8]         # a
-words[5:7]       # is
-words[:7]        # This is
-words[10:]       # sentence.
-words[17:9:-1]   # ecnetnes
-
-len(words)       # 19
-"One" + "Two"    # OneTwo
-  \end{minted}
-  \citeurl{docs.python.org/3/tutorial}
-\end{frame}
-
-\begin{frame}[fragile]{Functions}
-  \begin{description}
-    \item[def] is the keyword for defining a function.
-    \item[Parameters] can be given defaults, so that they are optional.
-  \end{description}
-  \begin{minted}{python}
-def axn(x, a=1, n=2):
-  return a*(x**n)    # ax^n
- 
-axn(3)       # 9
-axn(3, 2)    # 18
-axn(3, 2, 3) # 54
-axn(3, n=3)  # 27
-  \end{minted}
-  \citeurl{docs.python.org/3/tutorial}
-\end{frame}
-
-\begin{frame}[fragile]{List comprehensions}
-  \begin{description}
-    \item[Comprehensions] are quick ways of creating lists from other lists.
-  \end{description}
-  \begin{minted}{python}
-nos = range(5) # [0, 1, 2, 3, 4]
-squares = [i*i for i in nos] # [0, 1, 4, 9, 16]
-oddsqs = [i*i for i in nos if i % 2 == 1] # [1, 9]
-  \end{minted}
-  \citeurl{docs.python.org/3/tutorial}
-\end{frame}
+\section{NP complete problems}
 
 
 
-\begin{frame}[fragile]{map()}
-  \begin{description}
-    \item[map()] takes a function and a list.
-    \item[New list] -- it returns a new generator, which is the original list with the function applied to each element.
-  \end{description}
-  \begin{minted}{python}
-map(len, words)
-list(map(len, words))
-  \end{minted}
-  \citeurl{docs.python.org/3/tutorial}
-\end{frame}
+%\section{Python}
+%
+%
+%\begin{frame}{About Python}
+%  \begin{description}
+%    \item[January 1994] -- Python 1.0.0 released.
+%    \vspace{0.25cm}
+%    \item[Guido van Rossum] -- Designer/Author of Python.
+%    \vspace{0.25cm}
+%    \item[Current versions] -- 3.5.1 and 2.7.11.
+%    \vspace{0.25cm}
+%    \item[Interpreted] -- Python implementation must be present at runtime.
+%    \vspace{0.25cm}
+%    \item[Off-side rule] -- Blocks identified by indentation, as opposed to curly braces.
+%    \vspace{0.25cm} 
+%    \item[Popularity] -- IEEE Spectrum ranks it as the fourth most popular language (July 2015).
+%    \vspace{0.25cm}
+%    \item[Community] -- Python Enhancement Proposals, notably \href{https://www.python.org/dev/peps/pep-0008/}{PEP 8: The Python Style Guide}.
+%    \vspace{0.25cm} 
+%  \end{description}
+%  \citeurl{spectrum.ieee.org/computing/software/the-2015-top-ten-programming-languages}
+%\end{frame}
+%
+%
+%\begin{frame}{Guido van Rossum}
+%  \begin{columns}
+%    \begin{column}{1.5in}
+%      \includegraphics[width=1.4in]{img/guido_van_rossum.jpg}
+%    \end{column}
+%    \begin{column}{0.7\textwidth}
+%      \begin{itemize}
+%        \item Started Python as a hobby.
+%        \vspace{0.25cm}
+%        \item Worked for Google, half-time spent on Python.
+%        \vspace{0.25cm}
+%        \item Now works at Dropbox.
+%        \vspace{0.25cm}
+%        \item Benevolent dictator for life (BDFL).
+%      \end{itemize}
+%    \end{column}
+%  \end{columns}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Conditions}
+%  \begin{minted}{python}
+%x = int(raw_input("Please enter an integer: "))
+%if x < 0:
+%  x = 0
+%  print 'Negative changed to zero'
+%elif x == 0:
+%  print 'Zero'
+%elif x == 1:
+%  print 'Single'
+%else:
+%  print 'More'
+%  \end{minted}
+%  \citeurl{docs.python.org/2/tutorial}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Loops}
+%  \begin{minted}{python}
+%# A for loop.
+%a = ['Mary', 'had', 'a', 'little', 'lamb']
+%for i in range(len(a)):
+%  print(i, a[i])
+%  \end{minted}
+%  \begin{minted}{python}
+%# A while loop.
+%a, b = 0, 1
+%while b < 1000:
+%  print(b)
+%  a, b = b, a+b
+%  \end{minted}
+%  \citeurl{docs.python.org/3/tutorial}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Functions}
+%  \begin{minted}{python}
+%# write Fibonacci series up to n
+%def fib(n):   
+%  """Print a Fibonacci series up to n."""
+%  a, b = 0, 1
+%  while a < n:
+%    print(a)
+%    a, b = b, a+b
+%  \end{minted}
+%  \citeurl{docs.python.org/3/tutorial}
+%\end{frame}
+%
+%\begin{frame}{CPython}
+%  \begin{description}
+%    \item[Reference implementation] -- Many different Python implementations exist.
+%    \vspace{0.25cm}
+%    \item[Version 3] -- Broke backwards compatibility (somewhat).
+%    \vspace{0.25cm}
+%    \item[Unladen Swallow] -- Google attempt to fix some Python problems.
+%    \vspace{0.25cm}
+%    \item[Modules] -- Lots of great Python modules available.
+%  \end{description}
+%  \citeurl{www.python.org}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Lists}
+%  \begin{description}
+%    \item[Lists] in Python are usually written as comma-separated values between square brackets.
+%    \item[Types] -- elements of a list don't have to have the same types.
+%    \item[Slicing] is possible, where we take a sublist of the list.
+%    \item[Assignment] to slices is possible.
+%    \item[len()] is a built-in function that returns the length of a list.
+%    \item[range()] is a built-in function that returns a list of numbers. Note: it returns an \emph{iterator}.
+%  \end{description}
+%  \begin{minted}{python}
+%letters = ['a', 'b', 'c']
+%letters[1:] = ['c', 'd']
+%range(10) # [0,1,2,3,4,5,6,7,8,9]
+%  \end{minted}
+%  \citeurl{docs.python.org/3/tutorial}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Strings}
+%  \begin{description}
+%    \item[Strings] are a lot like lists in Python.
+%    \item[Assignment] to slices is not allowed, however.
+%  \end{description}
+%  \begin{minted}{python}
+%words = "This is a sentence."
+%words[8]         # a
+%words[5:7]       # is
+%words[:7]        # This is
+%words[10:]       # sentence.
+%words[17:9:-1]   # ecnetnes
+%
+%len(words)       # 19
+%"One" + "Two"    # OneTwo
+%  \end{minted}
+%  \citeurl{docs.python.org/3/tutorial}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Functions}
+%  \begin{description}
+%    \item[def] is the keyword for defining a function.
+%    \item[Parameters] can be given defaults, so that they are optional.
+%  \end{description}
+%  \begin{minted}{python}
+%def axn(x, a=1, n=2):
+%  return a*(x**n)    # ax^n
+% 
+%axn(3)       # 9
+%axn(3, 2)    # 18
+%axn(3, 2, 3) # 54
+%axn(3, n=3)  # 27
+%  \end{minted}
+%  \citeurl{docs.python.org/3/tutorial}
+%\end{frame}
+%
+%\begin{frame}[fragile]{List comprehensions}
+%  \begin{description}
+%    \item[Comprehensions] are quick ways of creating lists from other lists.
+%  \end{description}
+%  \begin{minted}{python}
+%nos = range(5) # [0, 1, 2, 3, 4]
+%squares = [i*i for i in nos] # [0, 1, 4, 9, 16]
+%oddsqs = [i*i for i in nos if i % 2 == 1] # [1, 9]
+%  \end{minted}
+%  \citeurl{docs.python.org/3/tutorial}
+%\end{frame}
+%
+%
+%
+%\begin{frame}[fragile]{map()}
+%  \begin{description}
+%    \item[map()] takes a function and a list.
+%    \item[New list] -- it returns a new generator, which is the original list with the function applied to each element.
+%  \end{description}
+%  \begin{minted}{python}
+%map(len, words)
+%list(map(len, words))
+%  \end{minted}
+%  \citeurl{docs.python.org/3/tutorial}
+%\end{frame}
+%
+%
+%\begin{frame}[fragile]{Lambda functions}
+%  \begin{description}
+%    \item[lambda] functions are short, inline functions.
+%    \item[Nameless] -- lambda functions need not have a name.
+%  \end{description}
+%  \begin{minted}{python}
+%lambda x: x + n
+%  \end{minted}
+%  \citeurl{docs.python.org/3/tutorial}
+%\end{frame}
+%
+%
+%
+%\begin{frame}[fragile]{Without generators}
+%  \begin{minted}{python}
+%# Build and return a list
+%def firstn(n):
+%    num, nums = 0, []
+%    while num < n:
+%        nums.append(num)
+%        num += 1
+%    return nums
+%
+%sum_of_first_n = sum(firstn(1000000))
+%  \end{minted}
+%  \citeurl{https://wiki.python.org/moin/Generators}
+%\end{frame}
+%
+%\begin{frame}[fragile]{With generators}
+%  \begin{minted}{python}
+%# yields items instead of returning a list
+%def firstn(n):
+%    num = 0
+%    while num < n:
+%        yield num
+%        num += 1
+%
+%sum_of_first_n = sum(firstn(1000000))
+%  \end{minted}
+%  \citeurl{https://wiki.python.org/moin/Generators}
+%\end{frame}
 
 
-\begin{frame}[fragile]{Lambda functions}
-  \begin{description}
-    \item[lambda] functions are short, inline functions.
-    \item[Nameless] -- lambda functions need not have a name.
-  \end{description}
-  \begin{minted}{python}
-lambda x: x + n
-  \end{minted}
-  \citeurl{docs.python.org/3/tutorial}
-\end{frame}
 
 
 
-\begin{frame}[fragile]{Without generators}
-  \begin{minted}{python}
-# Build and return a list
-def firstn(n):
-    num, nums = 0, []
-    while num < n:
-        nums.append(num)
-        num += 1
-    return nums
 
-sum_of_first_n = sum(firstn(1000000))
-  \end{minted}
-  \citeurl{https://wiki.python.org/moin/Generators}
-\end{frame}
-
-\begin{frame}[fragile]{With generators}
-  \begin{minted}{python}
-# yields items instead of returning a list
-def firstn(n):
-    num = 0
-    while num < n:
-        yield num
-        num += 1
-
-sum_of_first_n = sum(firstn(1000000))
-  \end{minted}
-  \citeurl{https://wiki.python.org/moin/Generators}
-\end{frame}
 
 \section{Permutations}
 

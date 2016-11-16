@@ -14,7 +14,8 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{xspace}
-\usetikzlibrary{mindmap,shadows,arrows,positioning,chains,fit,shapes}
+
+\usetikzlibrary{mindmap,shadows,arrows,positioning,chains,fit,shapes,decorations.markings}
 
 \usetheme{metropolis}
 \usemintedstyle{manni}
@@ -26,11 +27,34 @@
 \setbeamercolor{structure}{fg=gmitblue}
 \setbeamercolor{frametitle}{fg=white, bg=gmitred}
 \setbeamercolor{alerted text}{fg=gmitblue}
-\setbeamercolor{example text}{fg=gmitblue}
 
 \renewcommand\footnoterule{}
 \newcommand{\citeurl}[1]{\let\thefootnote\relax\footnotetext{\tiny \textcolor{gmitgrey}{\href{http://#1}{#1}}}}
 
+\newcommand{\hr}{\rule{\textwidth}{0.5pt}}
+
+\makeatletter
+\expandafter\def\csname PYGdefault@tok@err\endcsname{\def\PYGdefault@bc##1{{\strut ##1}}}
+\makeatother
+
 \begin{document}
-  \input{content.tex}
+  \title{Theory of Algorithms}
+  \subtitle{}
+  \author{ian.mcloughlin@gmit.ie}
+  \date{}
+
+  \begin{frame}
+    \titlepage
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Topics}
+    \tableofcontents
+  \end{frame}
+
+  \input{sections/scheme.tex}
+  \input{sections/turing.tex}
+  \input{sections/complexity.tex}
+  \input{sections/npcompleteness.tex}
 \end{document}
+ 

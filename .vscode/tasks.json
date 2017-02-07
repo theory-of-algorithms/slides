@@ -1,7 +1,7 @@
 {
-  "version": "1.1.0"
+  "version": "0.1.0"
   ,"_runner": "terminal"
-  "tasks": [
+  , "tasks": [
     {
       "taskName": "Compile",
       "command": "latexmk",
@@ -11,12 +11,9 @@
     },
     {
       "taskName": "Spell Check",
-      "command": "aspell",
+      "command": "aspell -c -t ${file}",
       "isShellCommand": true,
       "isTestCommand": true,
-      "args": [
-        "-c", "-t", "${file}"
-      ],
       "showOutput": "always"
     }
   ]

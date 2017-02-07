@@ -55,23 +55,6 @@
   \end{adjustbox}
 \end{frame}
 
-
-\begin{frame}{Notation}
-\begin{description}
-  \item[$Q$] Set of states (finite).
-  \item[$G$] Tape alphabet (finite).
-  \item[$B$] Blank symbol, element of $G$.
-  \item[$S$] Input alphabet, subset of $G \setminus \{ B \} $.
-  \item[$\delta$] Transition function.
-  \item[$q_0$] Initial state, $\in Q$.
-  \item[$q_a$] Accept state, $\in Q$.
-  \item[$q_r$] Reject state, $\in Q$.
-  \vspace{0.3cm}
-  \item[$M$] Turing Machine: $[ Q, G, B, S, \delta , q_0, q_a, q_r ]$.
-\end{description}
-\end{frame}
-
-
 \begin{frame}{State Table}
   \begin{table}
     \centering
@@ -81,19 +64,52 @@
       \midrule
       \multirow{3}{*}{0} 
       & B & B &  & Accept \\
-      & 0 & 0 & L & 0 \\
-      & 1 & 1 & L & 1 \\
+      & 0 & 0 & R & 0 \\
+      & 1 & 1 & R & 1 \\
       \midrule
       \multirow{3}{*}{1}
       & B & B &  & Fail \\
-      & 0 & 0 & L & 1 \\
-      & 1 & 1 & L & 0 \\
+      & 0 & 0 & R & 1 \\
+      & 1 & 1 & R & 0 \\
       \bottomrule
     \end{tabular}
   \end{table}
   
   \[ \delta(q_i, g_n) \rightarrow (q_j, g_m, L/R) \]
 \end{frame}
+
+
+
+\begin{frame}{Notation}
+\begin{description}
+  \item[$Q$] Set of states (finite).
+  \item[$\Sigma$] Input alphabet, subset of $\Gamma \setminus \{ \sqcup \} $.
+  \item[$\Gamma$] Tape alphabet (finite).
+  \item[$\sqcup$] Blank symbol, element of $\Gamma$.
+  \item[$\delta$] Transition function, $\delta: Q \times \Gamma \rightarrow Q \times \Gamma \times \{L,R\}$.
+  \item[$q_0$] Start state, $\in Q$.
+  \item[$q_a$] Accept state, $\in Q$.
+  \item[$q_r$] Reject state, $\in Q$, $\neq q_a$.
+  \vspace{0.3cm}
+  \item[$M$] Turing Machine: $(Q, \Sigma, \Gamma, \delta , q_0, q_a, q_r )$.
+\end{description}
+\end{frame}
+
+
+
+\begin{frame}{Languages}
+
+\begin{description}
+  \item[String] over a set (called an alphabet) is a finite sequence of elements from it.
+  \item[Language] is a set of strings.
+  \item[Accepted] language of a Turing machine is the set of strings it accepts.
+  \item[Halting] -- given a string, a Turing machine will either accept it, reject it, or never stop (fail to halt).
+  \item[Decide] -- a Turing that halts on all elements of a language is said to decide it.
+  \item[Turing-decidable] -- a language that some Turing machine decides.
+\end{description}
+
+\end{frame}
+
 
 
 \begin{frame}{Turing's Second Example}
@@ -109,8 +125,29 @@
 \end{frame}
 
 
+
 \begin{frame}{Turing's Second Example: Table}
-  \includegraphics[width=9.5cm]{img/turing-table-2.png}
+  \begin{table}
+  \resizebox{\textwidth}{!}{%
+    \centering
+    \begin{tabular}{cccc}
+      \emph{m-config.}  & \emph{symbol}  & \emph{operations} & \emph{final m-config.} \\
+      $\mathfrak{b}$ & & $Pe,R,Pe,R,P0,R,R,P0,L,L$  & $\mathfrak{o}$ \\
+      & & & \\
+      \multirow{2}{*}{$\mathfrak{o}$} & $1$ & $R,Px,L,L,L$ & $\mathfrak{o}$ \\
+      & 0 & & $\mathfrak{q}$ \\
+      & & & \\
+      \multirow{2}{*}{$\mathfrak{q}$} & Any (0 or 1) & $R,R$ & $\mathfrak{q}$ \\
+      & None & $P1,L$ & $\mathfrak{p}$ \\
+      & & & \\
+      \multirow{3}{*}{$\mathfrak{p}$} & x & $E,R$ & $\mathfrak{q}$ \\
+      & e & R & $\mathfrak{f}$ \\
+      & None & $L,L$ & $\mathfrak{p}$ \\
+      & & & \\
+      \multirow{2}{*}{$\mathfrak{f}$} & Any & $R,R$ & $\mathfrak{f}$ \\
+      & None & $P0,L,L$ & $\mathfrak{o}$ \\
+    \end{tabular}}
+  \end{table}
 \end{frame}
 
 

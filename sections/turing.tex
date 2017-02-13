@@ -111,36 +111,44 @@
 \begin{frame}{Sets and alphabets}
 
 \begin{description}
-  \item[Recall] that a set is just a collection of objects.
-  \item[Elements] of a set have two important attributes -- they are either definitely in the set or definitely not in the set, and they are distinct so the same element can't be in there twice.
+  \item[Recall] sets are just collections of objects called elements.
+  \item[Sets] have two important attributes -- an object is either in the set or not, and all elements are distinct.
   \item[Alphabets] in the definition of Turing machines are just sets, and their elements are called symbols.
-  \item[Strings] over alphabet are finite sequences of elements from the alphabet.
-  \item[Sequences] have order, and in our case we just write them side-by-side in order.
+  \item[Strings] are finite sequences (i.e. ordered lists) of symbols over alphabets.
+  \item[$\epsilon$] is the empty string.
+  \item[$\mathbb{A}^*$] is the set containing all of the strings over the alphabet A, including the empty string.
+  \item[$|w|$] denotes the length of a string $w$, e.g. if $w = xxyzxy$ then $|w| = 6$.
 \end{description}
 \end{frame}
 
 \begin{frame}{Alphabets and strings}
-\begin{exampleblock}{Examples}
-The following are examples of strings over the alphabet $\{0,1\}$:
-\begin{itemize}
-\item 0101
-\item 10001
-\item 111
-\item 0
-\item $\epsilon$
-\end{itemize}
-\end{exampleblock}
+\metroset{block=fill}
+  \begin{alertblock}{Examples}
+    The following are examples of strings over the alphabet $\{0,1\}$:
+    \begin{itemize}
+      \item 100110
+      \item 111
+      \item 0
+      \item $\epsilon$
+    \end{itemize}
+  \end{alertblock}
+\metroset{block=transparent}
+\begin{alertblock}{Single character strings}
+Note the distinction between a symbol in an alphabet and the string containing a single string.
+They look the same, but one is a symbol and one is a string. 
+This is akin to the distinction in C between the character 'a' and the string literal "a".
+\end{alertblock}
 \end{frame}
 
 
 \begin{frame}{Languages}
 
 \begin{description}
-  \item[String] over a set (called an alphabet) is a finite sequence of elements from it.
   \item[Language] is a set of strings.
+  \item[Turing machines] accept some strings as inputs.
   \item[Accepted] language of a Turing machine is the set of strings it accepts.
   \item[Halting] -- given a string, a Turing machine will either accept it, reject it, or never stop (fail to halt).
-  \item[Decide] -- a Turing that halts on all elements of a language is said to decide it.
+  \item[Decide] -- a Turing machine that halts on all inputs is called a decider for the language it accepts.
   \item[Turing-decidable] -- a language that some Turing machine decides.
 \end{description}
 
@@ -149,22 +157,22 @@ The following are examples of strings over the alphabet $\{0,1\}$:
 
 
 \begin{frame}{Turing's Second Example}
-  \begin{block}{A slightly more difficult example}
+  \begin{quote}
     We can construct a machine to compute the sequence
     \[ 001011011101111011111 \ldots \]
-    The machine is to be capable of five $m$-configurations, viz. $o$, $q$, $p$, $f$, $b$ and of printing $a$, $x$, $0$, $1$.
-    The first three symbols on the tape will be $aaO$; the other figures follow on alternate squares.
+    The machine is to be capable of five $m$-configurations, viz. $\mathfrak{o}$, $\mathfrak{q}$, $\mathfrak{p}$, $\mathfrak{f}$, $\mathfrak{b}$ and of printing $a$, $x$, $0$, $1$.
+    The first three symbols on the tape will be $aa0$; the other figures follow on alternate squares.
     On the intermediate squares we never print anything but $x$.
     These letters serve to keep the place for us and are erased when we have finished with them.
     We also arrange that in the sequence of figures on alternate squares there shall be no blanks.
-  \end{block}
+  \end{quote}
 \end{frame}
 
 
 
 \begin{frame}{Turing's Second Example: Table}
   \begin{table}
-  \resizebox{\textwidth}{!}{%
+  \resizebox{\textwidth}{!}{
     \centering
     \begin{tabular}{cccc}
       \emph{m-config.}  & \emph{symbol}  & \emph{operations} & \emph{final m-config.} \\

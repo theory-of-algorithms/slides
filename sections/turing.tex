@@ -59,23 +59,22 @@
   \begin{table}
     \centering
     \begin{tabular}{cc|ccc}
-      \toprule
-      State  & Input  & Write & Move & Next \\
-      \midrule
-      \multirow{3}{*}{0} 
-      & B & B &  & Accept \\
-      & 0 & 0 & R & 0 \\
-      & 1 & 1 & R & 1 \\
-      \midrule
-      \multirow{3}{*}{1}
-      & B & B &  & Fail \\
-      & 0 & 0 & R & 1 \\
-      & 1 & 1 & R & 0 \\
-      \bottomrule
+    \toprule
+        State & Input & Write & Move & Next \\
+    \midrule
+        $q_0$ & $\sqcup$ & $\sqcup$ & L & $q_a$ \\
+        $q_0$ & 0 & 0 & R & $q_0$ \\
+        $q_0$ & 1 & 1 & R & $q_1$ \\
+    \midrule
+        $q_1$ & $\sqcup$ & $\sqcup$ & L & $q_f$ \\
+        $q_1$ & 0 & 0 & R & $q_1$ \\
+        $q_1$ & 1 & 1 & R & $q_0$ \\
+    \bottomrule
     \end{tabular}
   \end{table}
   
-  \[ \delta(q_i, g_n) \rightarrow (q_j, g_m, L/R) \]
+
+  \[ \delta(q_i, \gamma_n) \rightarrow (q_j, \gamma_m, L/R) \]
 \end{frame}
 
 
@@ -95,6 +94,43 @@
 \end{description}
 \end{frame}
 
+
+\begin{frame}{Blank symbol}
+
+\begin{description}
+  \item[Blank] is generally the only difference between the tape alphabet and the input alphabet.
+  \item[Definitions] of Turing machines generally don't disallow other symbols in the difference, but there's always at least a blank.
+  \item[Empty cells] of the tape in the machine are said to contain the blank symbol.
+  \item[Importantly] the blank symbol marks the end of the input on the tape.
+  \item[That's why] the input cannot contain the blank symbol.
+\end{description}
+
+\end{frame}
+
+
+\begin{frame}{Sets and alphabets}
+
+\begin{description}
+  \item[Recall] that a set is just a collection of objects.
+  \item[Elements] of a set have two important attributes -- they are either definitely in the set or definitely not in the set, and they are distinct so the same element can't be in there twice.
+  \item[Alphabets] in the definition of Turing machines are just sets, and their elements are called symbols.
+  \item[Strings] over alphabet are finite sequences of elements from the alphabet.
+  \item[Sequences] have order, and in our case we just write them side-by-side in order.
+\end{description}
+\end{frame}
+
+\begin{frame}{Alphabets and strings}
+\begin{exampleblock}{Examples}
+The following are examples of strings over the alphabet $\{0,1\}$:
+\begin{itemize}
+\item 0101
+\item 10001
+\item 111
+\item 0
+\item $\epsilon$
+\end{itemize}
+\end{exampleblock}
+\end{frame}
 
 
 \begin{frame}{Languages}

@@ -158,14 +158,14 @@ This is akin to the distinction in C between the character 'a' and the string li
 
 \begin{frame}{Turing's Second Example}
   \begin{quote}
-    We can construct a machine to compute the sequence
-    \[ 001011011101111011111 \ldots \]
-    The machine is to be capable of five $m$-configurations, viz. $\mathfrak{o}$, $\mathfrak{q}$, $\mathfrak{p}$, $\mathfrak{f}$, $\mathfrak{b}$ and of printing $a$, $x$, $0$, $1$.
-    The first three symbols on the tape will be $aa0$; the other figures follow on alternate squares.
+    As a slightly more difficult example we can construct a machine to compute the sequence $001011011101111011111\ldots$.
+    The machine is to be capable of five $m$-configurations, viz. $\mathfrak{o}$, $\mathfrak{q}$, $\mathfrak{p}$, $\mathfrak{f}$, $\mathfrak{b}$ and of printing $e$, $x$, $0$, $1$.
+    The first three symbols on the tape will be $ee0$; the other figures follow on alternate squares.
     On the intermediate squares we never print anything but $x$.
     These letters serve to keep the place for us and are erased when we have finished with them.
     We also arrange that in the sequence of figures on alternate squares there shall be no blanks.
   \end{quote}
+  \citeurl{www.cs.virginia.edu/~robins/Turing\_Paper\_1936.pdf}
 \end{frame}
 
 
@@ -195,61 +195,88 @@ This is akin to the distinction in C between the character 'a' and the string li
 \end{frame}
 
 
-\begin{frame}[fragile]{Turing's Second Example: JavaScript 1}
+\begin{frame}[fragile]{Turing's Second Example: Initial state and tape}
 \begin{minted}{javascript}
 // The contents of the tape.
-var tape = []
-s// The current position of the machine on the tape.
-var pos = 0
-// The current state;
+var tape = [];
+// The current position of the machine on the tape.
+var pos = 0;
+// The current state.
 var state = b;
 \end{minted}
 \end{frame}
 
-\begin{frame}[fragile]{Turing's Second Example: JavaScript 2}
+\begin{frame}[fragile]{Turing's Second Example: Reading and writing}
 \begin{minted}{javascript}
-// Writes a symbol to the current cell on the tape.
+// The blank symbol.
+var blank = undefined;
+
+// Write symbol sym to the current cell on the tape.
 function write(sym) {
-  tape[pos] = sym;
+	tape[pos] = sym;
 }
 
-// Returns true iff the current cell contains sym.
+// Return true iff the symbol in the current cell is sym.
 function read(sym) {
-  return sym == tape[pos] ? true : false;
+	return sym == tape[pos] ? true : false;
 }
 \end{minted}
 \end{frame}
 
-\begin{frame}[fragile]{Turing's Second Example: JavaScript 3}
+\begin{frame}[fragile]{Turing's Second Example: Moving the machine}
 \begin{minted}{javascript}
-// Erases the symbol in the current cell of the tape.
-function erase() {
-  delete tape[pos];
+// Move the machine head right.
+function right() {
+	pos++;
 }
 
-// Returns true iff the current cell is blank.
-// Returns true iff the current cell is blank.
-function blank() {
-  return typeof(tape[pos])
-    == 'undefined' ? true : false;
+// Move the machine head left.
+function left() {
+	pos--;
 }
 \end{minted}
 \end{frame}
 
-\begin{frame}[fragile]{Turing's Second Example: JavaScript 4}
+
+\begin{frame}[fragile]{Turing's Second Example: State b}
+\begin{table}
+    \centering
+    \begin{tabular}{cccc}
+      \emph{m-config.}  & \emph{symbol}  & \emph{operations} & \emph{final m-config.} \\
+      $\mathfrak{b}$ & & $Pe,R,Pe,R,P0,R,R,P0,L,L$  & $\mathfrak{o}$
+    \end{tabular}
+  \end{table}
+
 \begin{minted}{javascript}
 function b() {
-  write('e');
-  pos++;
-  write('e');
-  pos++;
-  write('0');
-  pos++;
-  pos++;
-  write('0');
-  pos--;
-  pos--;
-  state = o;
+	write('e'); right();
+	write('e'); right();
+	write('0'); right(); right();
+	write('0'); left(); left();
+	state = o;
+}
+\end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]{Turing's Second Example: State q}
+\begin{table}
+    \centering
+    \begin{tabular}{cccc}
+      \emph{m-config.}  & \emph{symbol}  & \emph{operations} & \emph{final m-config.} \\
+      \multirow{2}{*}{$\mathfrak{q}$} & Any (0 or 1) & $R,R$ & $\mathfrak{q}$ \\
+      & None & $P1,L$ & $\mathfrak{p}$ \\
+    \end{tabular}
+  \end{table}
+
+\begin{minted}{javascript}
+function q() {
+	if (read('0') || read('1')) {
+		right(); right(); state = q;
+	}
+	else if (read(blank)) {
+		write('1'); left(); state = p;
+	}
 }
 \end{minted}
 \end{frame}

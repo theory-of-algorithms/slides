@@ -3,22 +3,134 @@
 \section{Computational complexity}
 
 
-\begin{frame}{Languages}
+\begin{frame}{Bubble sort}
+  \begin{alertblock}{How many comparisons do we make in bubble sort?}
+    \begin{itemize}
+      \item Suppose we have a list with $n$ elements.
+      \item Best case scenario -- list already sorted -- make $n-1$ comparisons.
+      \item Worst case scenario -- list reverse sorted -- make $?$ comparisons.
+    \end{itemize}
+    \[ [1,2,3,4,5] \]
+    \[ [5,2,1,4,3] \]
+    \[ [5,4,3,2,1] \]
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Terminology of complexity}
+  \begin{description}
+    \item[Linear] A special category of polynomial time.
+    \item[Polynomial] As the input gets longer, the algorithm takes longer, but at a rate that's manageable.
+    \item[Exponential] As the input gets longer, the algorithm takes longer, at a rate that's just as bad.
+    \item[Logarithmic] As the input get longer, the algorithm takes longer, but a lesser rate.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}[fragile]{Terminology of complexity (graph)}
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[xmin=0, domain=0:8, enlargelimits]
+    \addplot[blue] {(2*x)+1} node[above]{$2n$};
+    \addplot[black] {pow(x,2)+1} node[above]{$n^2$};
+    \addplot[red] {pow(2,x)} node[above]{$2^n$};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}{Linear}
+  \[ f(n) = a_0 + a_1 n \]
+  \begin{alertblock}{How many pairs of shoes does a centipede need?}
+    \begin{itemize}
+      \item Let's say a centipede has 100 feet.
+      \item Then every centipede needs 100 shoes.
+      \item That's 50 pairs of shoes.
+      \item So 2 centipedes need 100 pairs, 3 need 150 pairs, etc.
+      \item So $n$ centipedes need $50n$ pairs of shoes.
+      \item Linearity is familiar, and most people's default assumption.
+      \item You take the input, multiply by a constant, and add another constant.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+
+\begin{frame}{Polynomial}
+  \[ f(n) = a_0 + a_1 n + a_2 n^2 + a_3 n^3 + \ldots \]
+  \begin{alertblock}{What's the volume of a cube?}
+    \begin{itemize}
+      \item Suppose we have a cube with sides of length $n$ metres.
+      \item The volume of the cube is $n^3$ metres cubed.
+      \item A thousand of these cubes is $1000n^3$ in volume.
+      \item Take an input, multiply it by itself a \emph{fixed} number of times.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+
+\begin{frame}{Exponential}
+  \[ f(n) = a^n \]
+  \begin{alertblock}{How many numbers can we represent with $n$ bits?}
+    \begin{itemize}
+      \item Consider the case of four bits -- imagine four placeholders \textbf{\fbox{?}}\textbf{\fbox{?}}\textbf{\fbox{?}}\textbf{\fbox{?}}
+      \item Each placeholder can contain either 0 or 1.
+      \item There are $2 \times 2 \times 2 \times 2 = 2^4 = 16$ different numbers.
+      \item Add another bit, how many numbers is it now?
+      \item It's $2 \times 2 \times 2 \times 2 \times 2 = 2^5 = 32$.
+      \item Generally $n$ bits can represent $n^k$ numbers.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Logarithmic}
+  \[ f(n) = log_a n \]
+  \begin{alertblock}{How many bits do we need to represent $n$ numbers?}
+    \begin{itemize}
+      \item If we have $n$ bits we can represent $2^n$ numbers.
+      \item If we want to represent $n$ numbers, how many bits to we need (at a minimum)?
+      \item The inverse operation to exponentiation is logarithm.
+      \item Remember, $a^n = b$ means $log_a b = n$.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+
+
+
+\begin{frame}{Polynomial time}
+  \begin{definition}
+  An algorithm is said to be solvable in \emph{polynomial time} if the number of steps required to complete the algorithm for a given input is $O(n^k)$ for some nonnegative integer $k$, where $n$ is the complexity of the input.
+  \end{definition}
+  
+  \vspace{0.5cm}
+  \metroset{block=fill}
+  \begin{block}{$P$ complexity class}
+  The $P$ complexity class is the set of problems for which there exists, for each such problem, at least one algorithm to solve that problem in polynomial time.
+  \end{block}
+
+  \citeurl{mathworld.wolfram.com/P-Problem.html}
+\end{frame}
+
+
+
+
+\begin{frame}{Recap on Languages}
   \begin{description}
     \item[Alphabet] Finite set of symbols, denoted $\Sigma$.
-    \item[Word] Sequence of symbols, $w$ from $\Sigma$.
-    \item[Language] Set of words, denoted $L$.
-    \item[Length] Of a word, denoted $|w|$  .
-    \item[Empty word] Unique word of length 0, denoted $\lambda$.
+    \item[String] Sequence of symbols, $w$ from $\Sigma$.
+    \item[Language] Set of strings, denoted $L$.
+    \item[Length] Of a string, denoted $|w|$  .
+    \item[Empty string] Unique string of length 0, denoted $\epsilon$.
   \end{description}
 \end{frame}
 
 
 \begin{frame}{Kleene star}
   \begin{description}
-    \item[Words] $w_1 w_2$ is the concatenation of words $w_1$ and $w_2$.
-    \item[Languages] $L_1 L_2$ is the language resulting from the concatenation of all words in $L_1$ and all words in $L_2$, in that order.
-    \item[Powers] $L^0 = \{ \lambda \}$, $L^1 = L$ and $L^{n+1} = L^n L$ for all $n > 1$.
+    \item[Word concatenation:] $w_1 w_2$ is the concatenation of strings $w_1$ and $w_2$.
+    \item[String concatenation:] $L_1 L_2$ is the language resulting from the concatenation of all strings in $L_1$ and all words in $L_2$, in that order.
+    \item[Powers:] $L^0 = \{ \lambda \}$, $L^1 = L$ and $L^{n+1} = L^n L$ for all $n > 1$.
   \end{description}
   
   \vspace{0.5cm}
@@ -45,35 +157,12 @@
 \end{frame}
 
 
-\begin{frame}[fragile]{Exponential}
-  \begin{exampleblock}{How many numbers can we represent with $k$ bits?}
-    \begin{itemize}
-      \item Consider the case of four bits.
-      \item Imagine four placeholders:  \textbf{\fbox{?}}\textbf{\fbox{?}}\textbf{\fbox{?}}\textbf{\fbox{?}}
-      \item Each placeholder can contain either 0 or 1.
-      \item There are $2 \times 2 \times 2 \times 2 = 2^4 = 16$ different numbers.
-      \item Add another bit, how many numbers is it now?
-      \item It's $2 \times 2 \times 2 \times 2 \times 2 = 2^5 = 32$.
-      \item Generally $k$ bits can represent $2^k$ numbers.
-      \item This grows \textbf{exponentially} relative to $k$.
-    \end{itemize}
-  \end{exampleblock}
-\end{frame}
 
 
-\begin{frame}{Polynomial time}
-  \begin{definition}
-  An algorithm is said to be solvable in \emph{polynomial time} if the number of steps required to complete the algorithm for a given input is $O(n^k)$ for some nonnegative integer $k$, where $n$ is the complexity of the input.
-  \end{definition}
-  
-  \vspace{0.5cm}
-  \metroset{block=fill}
-  \begin{block}{$P$ complexity class}
-  The $P$ complexity class is the set of problems for which there exists, for each such problem, at least one algorithm to solve that problem in polynomial time.
-  \end{block}
 
-  \citeurl{mathworld.wolfram.com/P-Problem.html}
-\end{frame}
+
+
+
 
 
 \begin{frame}{Non-deterministic polynomial time}

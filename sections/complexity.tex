@@ -3,16 +3,30 @@
 \section{Computational complexity}
 
 
-\begin{frame}{Bubble sort}
-  \begin{alertblock}{How many comparisons do we make in bubble sort?}
+\begin{frame}{Bubble sort for fixed size input}
+  \begin{alertblock}{How many comparisons does bubble sort make for different inputs of the same size?}
     \begin{itemize}
-      \item Suppose we have a list with $n$ elements.
+      \item Suppose we have a list with 5 elements.
       \item Best case scenario: list already sorted.
       \item Worst case scenario: list reverse sorted.
     \end{itemize}
     \[ [1,2,3,4,5] \]
     \[ [5,2,1,4,3] \]
     \[ [5,4,3,2,1] \]
+  \end{alertblock}
+\end{frame}
+
+
+\begin{frame}{Bubble sort different sized inputs}
+  \begin{alertblock}{How many comparisons does bubble sort make for inputs of increasing length?}
+    \begin{itemize}
+      \item Suppose we have a list with $n$ elements.
+      \item Compare the worst case scenario for each value of $n$.
+    \end{itemize}
+    \[ [3,2,1] \]
+    \[ [4,3,2,1] \]
+    \[ [5,4,3,2,1] \]
+    \[ [6,5,4,3,2,1] \]
   \end{alertblock}
 \end{frame}
 
@@ -40,22 +54,26 @@
 
 
 \begin{frame}{Terminology of complexity}
-  \begin{description}
-    \item[Linear] A special category of polynomial time.
-    \item[Polynomial] As the input gets longer, the algorithm takes longer, but at a rate that's manageable.
-    \item[Exponential] As the input gets longer, the algorithm takes longer, at a rate that's just as bad.
-    \item[Logarithmic] As the input gets longer, the algorithm takes longer, but a lesser rate.
-  \end{description}
+  \begin{alertblock}{How does the number of operations change as $n$ increases?}
+    \begin{description}
+      \item[Linear] Multiply $n$ by a constant, add a constant. (Special category of polynomial time.)
+      \item[Polynomial] Multiply $n$ by itself a fixed number of times, multiply by a constant. (Can add such terms together.)
+      \item[Exponential] Raise a constant to the power of $n$. (Rate of change is still exponential.)
+      \item[Logarithmic] Opposite of exponential.
+    \end{description}
+  \end{alertblock}
 \end{frame}
 
 
 \begin{frame}[fragile]{Terminology of complexity (graph)}
 \begin{center}
 \begin{tikzpicture}
-  \begin{axis}[xmin=0, domain=0:8, enlargelimits]
-    \addplot[blue] {(2*x)+1} node[above]{$2n$};
-    \addplot[black] {pow(x,2)+1} node[above]{$n^2$};
-    \addplot[red] {pow(2,x)} node[above]{$2^n$};
+  \begin{axis}[xmin=0, domain=0:7, axis x line=bottom, axis y line=left, legend style={at={(0.5,0.5)},anchor=south}]
+    \addplot[red]   {pow(2,x)};
+    \addplot[black] {pow(x,2)};
+    \addplot[blue]  {2*x};
+    \addplot[cyan]  {ln(x)/ln(2))};
+    \legend{$2^n$,$n^2$,$2n$,$log(n)$};
   \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -133,6 +151,17 @@
   \end{block}
 
   \citeurl{mathworld.wolfram.com/P-Problem.html}
+\end{frame}
+
+
+
+\begin{frame}{Polynomial time on a Turing machine}
+  \begin{description}
+    \item[Sorting] algorithms are usually compared in terms of comparisons.
+    \item[Other algorithms] might be compared in terms of something else, like iterations.
+    \item[With Turing machines] we can use the number of times we look up the state table.
+    \item[The size] of the input can be the length of the input on the tape initially.
+  \end{description}
 \end{frame}
 
 

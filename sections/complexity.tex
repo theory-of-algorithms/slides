@@ -99,12 +99,13 @@
 
 \begin{frame}{Polynomial}
   \[ f(n) = a_0 + a_1 n + a_2 n^2 + a_3 n^3 + \ldots \]
-  \begin{alertblock}{What's the volume of a cube?}
+  \begin{alertblock}{What is the volume of a cube of side $n$?}
     \begin{itemize}
-      \item Suppose we have a cube with sides of length $n$ metres.
-      \item The volume of the cube is $n^3$ metres cubed.
-      \item A thousand of these cubes is $1000n^3$ in volume.
-      \item Take an input, multiply it by itself a \emph{fixed} number of times.
+      \item Suppose we have a cube with sides of length 1 metre.
+      \item The volume of the cube is $1 \times 1 \times 1 = 1$ metres cubed.
+      \item Suppose the cube has sides of length 2 metres instead.
+      \item The volume of the cube is $2 \times 2 \times 2 = 8$ metres cubed.
+      \item In general, for sides of length $n$, the volume is $n^3$.
     \end{itemize}
   \end{alertblock}
 \end{frame}
@@ -119,7 +120,7 @@
       \item There are $2 \times 2 \times 2 \times 2 = 2^4 = 16$ different numbers.
       \item Add another bit, how many numbers is it now?
       \item It's $2 \times 2 \times 2 \times 2 \times 2 = 2^5 = 32$.
-      \item Generally $n$ bits can represent $n^k$ numbers.
+      \item Generally $n$ bits can represent $2^n$ numbers.
     \end{itemize}
   \end{alertblock}
 \end{frame}

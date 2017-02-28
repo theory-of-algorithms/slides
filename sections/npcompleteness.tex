@@ -3,6 +3,21 @@
 \section{NP completeness}
 
 
+\begin{frame}{Non-deterministic polynomial time}
+  \begin{definition}
+  A problem is in the $NP$ complexity class if it is solvable by a non-deterministic Turing Machine in polynomial time. A non-deterministic Turing Machine is one which may not have a unique action to take for some or all states and inputs.
+  \end{definition}
+  
+  \vspace{0.5cm}
+  \metroset{block=fill}
+  \begin{block}{$P$ is a subset of $NP$}
+  The $P$ complexity class is a subset of $P$ because all polynomial time solvabled problems can be modelled using Nondeterministic Turing Machinses.
+  \end{block}
+
+  \citeurl{mathworld.wolfram.com/P-Problem.html}
+\end{frame}
+
+
 \begin{frame}{$NP$-complete problems}
   \begin{definition}
     An problem is $NP$-hard if each problem in $NP$ can be reduced to it in polynomial time.

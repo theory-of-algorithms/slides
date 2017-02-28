@@ -80,7 +80,6 @@
 \end{frame}
 
 
-
 \begin{frame}{Linear}
   \[ f(n) = a_0 + a_1 n \]
   \begin{alertblock}{How many pairs of shoes does a centipede need?}
@@ -125,6 +124,7 @@
   \end{alertblock}
 \end{frame}
 
+
 \begin{frame}{Logarithmic}
   \[ f(n) = log_a n \]
   \begin{alertblock}{How many bits do we need to represent $n$ numbers?}
@@ -138,22 +138,18 @@
 \end{frame}
 
 
-
-
 \begin{frame}{Polynomial time}
   \begin{definition}
-  An algorithm is said to be solvable in \emph{polynomial time} if the number of steps required to complete the algorithm for a given input is $O(n^k)$ for some nonnegative integer $k$, where $n$ is the complexity of the input.
+    An algorithm is said to be solvable in \emph{polynomial time} if the number of steps required to complete the algorithm for a given input is $O(n^k)$ for some nonnegative integer $k$, where $n$ is the complexity of the input.
   \end{definition}
-  
   \vspace{0.5cm}
   \metroset{block=fill}
   \begin{block}{$P$ complexity class}
-  The $P$ complexity class is the set of problems for which there exists, for each such problem, at least one algorithm to solve that problem in polynomial time.
+    The $P$ complexity class is the set of problems for which there exists, for each such problem, at least one algorithm to solve that problem in polynomial time.
   \end{block}
 
   \citeurl{mathworld.wolfram.com/P-Problem.html}
 \end{frame}
-
 
 
 \begin{frame}{Polynomial time on a Turing machine}
@@ -164,8 +160,6 @@
     \item[The size] of the input can be the length of the input on the tape initially.
   \end{description}
 \end{frame}
-
-
 
 
 \begin{frame}{Recap on Languages}
@@ -185,13 +179,10 @@
     \item[String concatenation:] $L_1 L_2$ is the language resulting from the concatenation of all strings in $L_1$ and all words in $L_2$, in that order.
     \item[Powers:] $L^0 = \{ \lambda \}$, $L^1 = L$ and $L^{n+1} = L^n L$ for all $n > 1$.
   \end{description}
-  
   \vspace{0.5cm}
-  
   \begin{block}{Kleene Star}
      \[ L^* =  \bigcup_{i=0}^{\infty} L^i \]
   \end{block}
-  
   Note that treating the alphabet $\Sigma$ as a language in itself, we get that $\Sigma^*$ is the set of all words over $\Sigma$.
 \end{frame}
 
@@ -210,29 +201,6 @@
 \end{frame}
 
 
-
-
-
-
-
-
-
-
-\begin{frame}{Non-deterministic polynomial time}
-  \begin{definition}
-  A problem is in the $NP$ complexity class if it is solvable by a non-deterministic Turing Machine in polynomial time. A non-deterministic Turing Machine is one which may not have a unique action to take for some or all states and inputs.
-  \end{definition}
-  
-  \vspace{0.5cm}
-  \metroset{block=fill}
-  \begin{block}{$P$ is a subset of $NP$}
-  The $P$ complexity class is a subset of $P$ because all polynomial time solvabled problems can be modelled using Nondeterministic Turing Machinses.
-  \end{block}
-
-  \citeurl{mathworld.wolfram.com/P-Problem.html}
-\end{frame}
-
-
 \begin{frame}{Decision problems}
   \begin{description}
     \item[Decision problems] are problems where the answer is 0 or 1.
@@ -241,6 +209,7 @@
     \vspace{0.5cm}
     \item[$f:\{0,1\}^n \rightarrow \{0,1\}$] is useful notation for considering decision problems.
     \vspace{0.5cm}
-    \item[Other problems] can be easily (polynomial time) adapted into decision problems.
+    \item[Turing machines] model decision problems by deciding languages.
   \end{description}
 \end{frame}
+

@@ -228,13 +228,37 @@
   \citeurl{www.cse.iitk.ac.in/users/manindra/algebra/primality\_v6.pdf}
 \end{frame}
 
-\begin{frame}{Primality testing}
-  \begin{description}
-    \item[Cryptography] depends on primes numbers, in the main.
-    \item[Asymmetric] cryptography depends on two facts:
+\begin{frame}{Modern cryptography}
+  \begin{alertblock}
+    Modern asymmetric key crytography is based on prime numbers.
+    It depends on two facts:
     \begin{itemize}
       \item It's easy to find primes (P).
       \item It's hard to decompose a composite number into primes (Not known to be P).
     \end{itemize}
-  \end{description}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]{Brute force prime checking}
+  \begin{alertblock}{Is n a prime?}
+    \begin{minted}{c}
+int is_prime(int n) {
+  for (int i = 0; i < n; i++) {
+    if (n % i == 0)
+      return 0;
+  }
+  return 1;
+}
+    \end{minted}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]{More efficient prime checking}
+  \begin{itemize}
+    \item Suppose $a \times b = n$.
+    \item Then $a < b$, $a > b$ or $a = b$.
+    \item No matter what, $a \le \sqrt{n}$ and/or $b \le \sqrt{n}$.
+    \item So only loop to $\sqrt{n}$.
+    \item This still isn't that efficient.
+  \end{itemize}
 \end{frame}

@@ -15,6 +15,12 @@
       "isShellCommand": true,
       "isTestCommand": true,
       "showOutput": "always"
+    },
+    {
+      "taskName": "Clean",
+      "command": "latexmk -C",
+      "isShellCommand": true,
+      "showOutput": "always"
     }
   ]
 }

@@ -137,6 +137,60 @@
   \end{alertblock}
 \end{frame}
 
+\begin{frame}{Big-O (Sipser)}
+  \begin{definition}
+    Let $f$ and $g$ be functions $f,g: \mathbb{N} \rightarrow \mathbb{R}^+$.
+    We say that $f(n) = O(g(n))$, or $f$ is \emph{big-O} of $g$, if positive integers $c$ and $n_0$ exist such that, for every integer $n$ greater than or equal to $n_0$, $f(n) \le cg(n)$.
+  \end{definition}
+  \begin{alertblock}{Example}
+    Let $f$ be the function $f(n) = 5n^3 + 2n^2 + 22n + 6$.
+    We'll prove that $f$ is big-O of $n^3$ ($f = O(n^3)$).
+    Let $c$ be $6$ and $n_0$ be $10$.
+    Is the following true, for all $n$ greater than or equal to 10, $5n^3 + 2n^2 + 22n + 6 \le 6n^3$?
+    Note that as $n$ increases ($n=10,n=11,n=12,\ldots$), $f(n)$ also increases.
+    Also note that $f(10) = 5426$ and $6g(10) = 6000$.
+  \end{alertblock}
+  \citeurl{math.mit.edu/~sipser/book.html}
+\end{frame}
+
+
+\begin{frame}[fragile]{Big-O example graph}
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[xmin=0, domain=0:30, axis x line=bottom, axis y line=left, legend style={at={(0.4,0.6)},anchor=south}]
+    \addplot[red]   {6*pow(x,3)};
+    \addplot[black] {5*pow(x,3) + 2*pow(x,2) + 22*x + 6};
+    \legend{$6n^3$,$5n^3 + 2n^2 + 22n + 6$};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Smaller values of $n$}
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[xmin=0, domain=0:8, axis x line=bottom, axis y line=left, legend style={at={(0.4,0.6)},anchor=south}]
+    \addplot[red]   {6*pow(x,3)};
+    \addplot[black] {5*pow(x,3) + 2*pow(x,2) + 22*x + 6};
+    \legend{$6n^3$,$5n^3 + 2n^2 + 22n + 6$};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Bubble sort is $O(n^2)$}
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[xmin=0, domain=0:8, axis x line=bottom, axis y line=left, legend style={at={(0.4,0.6)},anchor=south}]
+    \addplot[red]   {x^2};
+    \addplot[black] {x*(x-1)/2};
+    \addplot[cyan]   {x*ln(x)};
+    \legend{$n^2$,$n(n-1)/2$,$n\log(n)$};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
 
 \begin{frame}{Polynomial time}
   \begin{definition}
@@ -229,8 +283,7 @@
 \end{frame}
 
 \begin{frame}{Modern cryptography}
-  \begin{alertblock}
-    Modern asymmetric key crytography is based on prime numbers.
+  \begin{alertblock}{Modern asymmetric key crytography is based on prime numbers}
     It depends on two facts:
     \begin{itemize}
       \item It's easy to find primes (P).

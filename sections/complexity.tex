@@ -73,7 +73,7 @@
     \addplot[black] {pow(x,2)};
     \addplot[blue]  {2*x};
     \addplot[cyan]  {ln(x)/ln(2))};
-    \legend{$2^n$,$n^2$,$2n$,$log(n)$};
+    \legend{$2^n$,$n^2$,$2n$,$\log n$};
   \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -126,13 +126,13 @@
 
 
 \begin{frame}{Logarithmic}
-  \[ f(n) = log_a n \]
+  \[ f(n) = \log_a n \]
   \begin{alertblock}{How many bits do we need to represent $n$ numbers?}
     \begin{itemize}
       \item If we have $n$ bits we can represent $2^n$ numbers.
       \item If we want to represent $n$ numbers, how many bits to we need (at a minimum)?
       \item The inverse operation to exponentiation is logarithm.
-      \item Remember, $a^n = b$ means $log_a b = n$.
+      \item Remember, $a^n = b$ means $\log_a b = n$.
     \end{itemize}
   \end{alertblock}
 \end{frame}
@@ -185,7 +185,7 @@
     \addplot[red]   {x^2};
     \addplot[black] {x*(x-1)/2};
     \addplot[cyan]   {x*ln(x)};
-    \legend{$n^2$,$n(n-1)/2$,$n\log(n)$};
+    \legend{$n^2$,$n(n-1)/2$,$n \log n$};
   \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -286,21 +286,28 @@
   \begin{alertblock}{Modern asymmetric key crytography is based on prime numbers}
     It depends on two facts:
     \begin{itemize}
-      \item It's easy to find primes (P).
+      \item It's easy to verify primes (P).
       \item It's hard to decompose a composite number into primes (Not known to be P).
     \end{itemize}
   \end{alertblock}
+  \begin{alertblock}{Generating versus verifying}
+    Note that it's not neccessarily easy to generate prime numbers.
+    We know that verifying a number is prime can be done in polynomial time.
+    That doesn't mean that we can generate prime numbers in polyonmial time.
+    You have to start with the prime, and then ask the question.
+  \end{alertblock}
+
 \end{frame}
 
 \begin{frame}[fragile]{Brute force prime checking}
   \begin{alertblock}{Is n a prime?}
     \begin{minted}{c}
-int is_prime(int n) {
-  for (int i = 0; i < n; i++) {
+function is_prime(n) {
+  for (var i = 2; i < n; i++) {
     if (n % i == 0)
-      return 0;
+      return false;
   }
-  return 1;
+  return true;
 }
     \end{minted}
   \end{alertblock}
@@ -315,3 +322,28 @@ int is_prime(int n) {
     \item This still isn't that efficient.
   \end{itemize}
 \end{frame}
+
+\begin{frame}[fragile]{Slightly more efficient}
+  \begin{alertblock}{Is n a prime?}
+    \begin{minted}{c}
+function is_prime(n) {
+  for (var i = 2; i < Math.sqrt(n); i++) {
+    if (n % i == 0)
+      return false;
+  }
+  return true;
+}
+    \end{minted}
+  \end{alertblock}
+\end{frame}
+
+%\begin{frame}[fragile]{AKS prime checking (2002)}
+%  \begin{enumerate}
+%    \item If $n = a^b$ where $a,b \in \mathbb{N}^+$, output composite.
+%    \item Find the smallest $r$ such that $ord_r(n) > (log_2 n)^2$.
+%    \item No matter what, $a \le \sqrt{n}$ and/or $b \le \sqrt{n}$.
+%    \item So only loop to $\sqrt{n}$.
+%    \item This still isn't that efficient.
+%  \end{enumerate}
+%  \citeurl{wikipedia.org/wiki/AKS\_primality\_test}
+%\end{frame}

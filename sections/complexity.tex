@@ -254,19 +254,62 @@
   \end{description}
 \end{frame}
 
+\begin{frame}{Think about $\{0,1\}^*$}
+  Consider the set:
+  \[ \Sigma^* \quad \textrm{where} \quad \Sigma = \{0,1\} \]
+  \vspace{1mm}
+  \begin{description}
+    \item[$\Sigma^*$]  is the set of all strings (of all lengths) of 0's and 1's.
+    \item[Documents] on a computer are elements of $\Sigma^*$.
+    \item[Programs] on a computer are elements of $\Sigma^*$.
+    \item[The entire contents] of your hard drive is one big string of 0's and 1's, and so is in $\Sigma^*$.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Example of a text file}
+Create a text file on your computer with this single line of text:
+  \begin{minted}{text}
+Hello I'm a text file!
+  \end{minted}
+  Then open it in a hex editor and see this:
+  \begin{minted}{text}
+48656C6C6F2049276D206120746578742066696C6521
+  \end{minted}
+  The hex editor is just displaying the binary as hex:
+  \begin{minted}{text}
+01001000011001010110110001101100011011110010
+00000100100100100111011011010010000001100001
+00100000011101000110010101111000011101000010
+00000110011001101001011011000110010100100001
+  \end{minted}
+\end{frame}
+
 
 \begin{frame}{Decision problems}
   \begin{description}
     \item[Decision problems] are problems where the answer is 0 or 1.
-    \vspace{0.5cm}
-    \item[Restricting] ourselves to decision problems is convenient and fair.
-    \vspace{0.5cm}
-    \item[$f:\{0,1\}^n \rightarrow \{0,1\}$] is useful notation for considering decision problems.
-    \vspace{0.5cm}
+    \[ f:\{0,1\}^n \rightarrow \{0,1\} \]
     \item[Turing machines] model decision problems by deciding languages.
+    \vspace{0.1cm}
+    \item[Deciders] are Turing machines that decide languages -- they end in an accept or fail state no matter what the input, as opposed to never finishing.
+    \vspace{0.1cm}
+    \item[Accept] is 1, fail is 0.
   \end{description}
 \end{frame}
 
+\begin{frame}{Deciding Word documents}
+  \begin{alertblock}{Can a Turing machine decide valid Word documents?}
+    Word documents are just strings of 0's and 1's, elements of $\{0,1\}^*$.
+    Not all strings of 0's and 1's are valid Word documents.
+    
+    If you try to open any old string of 0's and 1's in Word, it will likely tell you your file is corrupt.
+    
+    Can we construct a Turing machine that accepts all valid Word documents, and fails otherwise?
+    
+    Word seems to be able to decide what a valid Word document is, but it's always dealing with finite inputs.
+    The specification might allow for infinite Word documents.
+  \end{alertblock}
+\end{frame}
 
 \begin{frame}{PRIMES}
   \begin{definition}

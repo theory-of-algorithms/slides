@@ -78,7 +78,7 @@
     \addplot[black] {pow(x,2)};
     \addplot[blue]  {2*x};
     \addplot[cyan]  {ln(x)/ln(2))};
-    \legend{$2^n$,$n^2$,$2n$,$log(n)$};
+    \legend{$2^n$,$n^2$,$2n$,$\log n$};
   \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -131,13 +131,13 @@
 
 
 \begin{frame}{Logarithmic}
-  \[ f(n) = log_a n \]
+  \[ f(n) = \log_a n \]
   \begin{alertblock}{How many bits do we need to represent $n$ numbers?}
     \begin{itemize}
       \item If we have $n$ bits we can represent $2^n$ numbers.
       \item If we want to represent $n$ numbers, how many bits to we need (at a minimum)?
       \item The inverse operation to exponentiation is logarithm.
-      \item Remember, $a^n = b$ means $log_a b = n$.
+      \item Remember, $a^n = b$ means $\log_a b = n$.
     \end{itemize}
   \end{alertblock}
 \end{frame}
@@ -190,7 +190,7 @@
     \addplot[red]   {x^2};
     \addplot[black] {x*(x-1)/2};
     \addplot[cyan]   {x*ln(x)};
-    \legend{$n^2$,$n(n-1)/2$,$n\log(n)$};
+    \legend{$n^2$,$n(n-1)/2$,$n \log n$};
   \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -259,19 +259,62 @@
   \end{description}
 \end{frame}
 
+\begin{frame}{Think about $\{0,1\}^*$}
+  Consider the set:
+  \[ \Sigma^* \quad \textrm{where} \quad \Sigma = \{0,1\} \]
+  \vspace{1mm}
+  \begin{description}
+    \item[$\Sigma^*$]  is the set of all strings (of all lengths) of 0's and 1's.
+    \item[Documents] on a computer are elements of $\Sigma^*$.
+    \item[Programs] on a computer are elements of $\Sigma^*$.
+    \item[The entire contents] of your hard drive is one big string of 0's and 1's, and so is in $\Sigma^*$.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Example of a text file}
+Create a text file on your computer with this single line of text:
+  \begin{minted}{text}
+Hello I'm a text file!
+  \end{minted}
+  Then open it in a hex editor and see this:
+  \begin{minted}{text}
+48656C6C6F2049276D206120746578742066696C6521
+  \end{minted}
+  The hex editor is just displaying the binary as hex:
+  \begin{minted}{text}
+01001000011001010110110001101100011011110010
+00000100100100100111011011010010000001100001
+00100000011101000110010101111000011101000010
+00000110011001101001011011000110010100100001
+  \end{minted}
+\end{frame}
+
 
 \begin{frame}{Decision problems}
   \begin{description}
     \item[Decision problems] are problems where the answer is 0 or 1.
-    \vspace{0.5cm}
-    \item[Restricting] ourselves to decision problems is convenient and fair.
-    \vspace{0.5cm}
-    \item[$f:\{0,1\}^n \rightarrow \{0,1\}$] is useful notation for considering decision problems.
-    \vspace{0.5cm}
+    \[ f:\{0,1\}^n \rightarrow \{0,1\} \]
     \item[Turing machines] model decision problems by deciding languages.
+    \vspace{0.1cm}
+    \item[Deciders] are Turing machines that decide languages -- they end in an accept or fail state no matter what the input, as opposed to never finishing.
+    \vspace{0.1cm}
+    \item[Accept] is 1, fail is 0.
   \end{description}
 \end{frame}
 
+\begin{frame}{Deciding Word documents}
+  \begin{alertblock}{Can a Turing machine decide valid Word documents?}
+    Word documents are just strings of 0's and 1's, elements of $\{0,1\}^*$.
+    Not all strings of 0's and 1's are valid Word documents.
+    
+    If you try to open any old string of 0's and 1's in Word, it will likely tell you your file is corrupt.
+    
+    Can we construct a Turing machine that accepts all valid Word documents, and fails otherwise?
+    
+    Word seems to be able to decide what a valid Word document is, but it's always dealing with finite inputs.
+    The specification might allow for infinite Word documents.
+  \end{alertblock}
+\end{frame}
 
 \begin{frame}{PRIMES}
   \begin{definition}
@@ -291,21 +334,28 @@
   \begin{alertblock}{Modern asymmetric key crytography is based on prime numbers}
     It depends on two facts:
     \begin{itemize}
-      \item It's easy to find primes (P).
+      \item It's easy to verify primes (P).
       \item It's hard to decompose a composite number into primes (Not known to be P).
     \end{itemize}
   \end{alertblock}
+  \begin{alertblock}{Generating versus verifying}
+    Note that it's not neccessarily easy to generate prime numbers.
+    We know that verifying a number is prime can be done in polynomial time.
+    That doesn't mean that we can generate prime numbers in polyonmial time.
+    You have to start with the prime, and then ask the question.
+  \end{alertblock}
+
 \end{frame}
 
 \begin{frame}[fragile]{Brute force prime checking}
   \begin{alertblock}{Is n a prime?}
     \begin{minted}{c}
-int is_prime(int n) {
-  for (int i = 0; i < n; i++) {
+function is_prime(n) {
+  for (var i = 2; i < n; i++) {
     if (n % i == 0)
-      return 0;
+      return false;
   }
-  return 1;
+  return true;
 }
     \end{minted}
   \end{alertblock}
@@ -320,3 +370,28 @@ int is_prime(int n) {
     \item This still isn't that efficient.
   \end{itemize}
 \end{frame}
+
+\begin{frame}[fragile]{Slightly more efficient}
+  \begin{alertblock}{Is n a prime?}
+    \begin{minted}{c}
+function is_prime(n) {
+  for (var i = 2; i < Math.sqrt(n); i++) {
+    if (n % i == 0)
+      return false;
+  }
+  return true;
+}
+    \end{minted}
+  \end{alertblock}
+\end{frame}
+
+%\begin{frame}[fragile]{AKS prime checking (2002)}
+%  \begin{enumerate}
+%    \item If $n = a^b$ where $a,b \in \mathbb{N}^+$, output composite.
+%    \item Find the smallest $r$ such that $ord_r(n) > (log_2 n)^2$.
+%    \item No matter what, $a \le \sqrt{n}$ and/or $b \le \sqrt{n}$.
+%    \item So only loop to $\sqrt{n}$.
+%    \item This still isn't that efficient.
+%  \end{enumerate}
+%  \citeurl{wikipedia.org/wiki/AKS\_primality\_test}
+%\end{frame}

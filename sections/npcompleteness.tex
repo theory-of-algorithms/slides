@@ -8,6 +8,18 @@
 \section{NP completeness}
 
 
+\begin{frame}{Non-deterministic Turing machine}
+  \begin{description}
+    \item[The usual] Turing machines are often called deterministic Turing machines.
+    \item[Deterministic Turing machines] have a row in their state table for every combination of (non-terminal) state and tape symbol.
+    \item[This means] there is only one path to follow at a given point in time.
+    \item[Nondeterministic] Turing machines can have any number of rows for each state/symbol (including none).
+    \item[Essentially] they allow for parallel computation -- they can follow two or more paths at a time.
+  \end{description}
+\end{frame}
+
+
+
 \begin{frame}{Non-deterministic polynomial time}
   \begin{definition}
   A problem is in the $NP$ complexity class if it is solvable by a non-deterministic Turing Machine in polynomial time. A non-deterministic Turing Machine is one which may not have a unique action to take for some or all states and inputs.

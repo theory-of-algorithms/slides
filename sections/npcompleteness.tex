@@ -11,68 +11,89 @@
 \begin{frame}{Non-deterministic Turing machine}
   \begin{description}
     \item[The usual] Turing machines are often called deterministic Turing machines.
-    \item[Deterministic Turing machines] have a row in their state table for every combination of (non-terminal) state and tape symbol.
+    \item[Deterministic] Turing machines have exactly one row in their state table for every combination of (non-terminal) state and tape symbol.
     \item[This means] there is only one path to follow at a given point in time.
     \item[Nondeterministic] Turing machines can have any number of rows for each state/symbol (including none).
-    \item[Essentially] they allow for parallel computation -- they can follow two or more paths at a time.
+    \item[Essentially] they allow for parallel computation -- they can branch into two or more paths at the same time.
   \end{description}
 \end{frame}
 
 
-
-\begin{frame}{Non-deterministic polynomial time}
-  \begin{definition}
-  A problem is in the $NP$ complexity class if it is solvable by a non-deterministic Turing Machine in polynomial time. A non-deterministic Turing Machine is one which may not have a unique action to take for some or all states and inputs.
-  \end{definition}
-  
-  \vspace{0.5cm}
-  \metroset{block=fill}
-  \begin{block}{$P$ is a subset of $NP$}
-  The $P$ complexity class is a subset of $P$ because all polynomial time solvabled problems can be modelled using Nondeterministic Turing Machinses.
-  \end{block}
-
-  \citeurl{mathworld.wolfram.com/P-Problem.html}
+\begin{frame}{Non-deterministic Turing machine and languages}
+  \begin{description}
+    \item[Languages] are accepted by non-deterministic Turing machines, where an input string is accepted if any branch ends in the accept state.
+    \item[Deciders] -- if a non-deterministic Turing machine always halts on all branches of computation, no matter what the input, then we say it decides the language it accepts.
+    \item[Any] language that is accepted (or decided) by a non-deterministic Turing machine has some deterministic Turing machine that accepts (or decides) it. So non-deterministic Turing machines don't really have any extra abilities over deterministic ones.
+  \end{description}
 \end{frame}
 
 
-\begin{frame}{$NP$-complete problems}
+\begin{frame}{Non-deterministic polynomial time}
   \begin{definition}
-    An problem is $NP$-hard if each problem in $NP$ can be reduced to it in polynomial time.
+    A decision problem is in the NP complexity class if it is decidable by a non-deterministic Turing Machine in polynomial time.
   \end{definition}
   
-  \vspace{0.5cm}
-  {\metroset{block=fill}
-  \begin{block}{$NP$-hard problems are hard}
-  $NP$-hard problems are at least as hard to solve as the hardest $NP$ problems.
-  Note that $NP$-hard problems don't have to be $NP$.
-  \end{block}}
-  
-  \vspace{0.5cm}
+  \begin{alertblock}{P is a subset of NP}
+    Note that every determinsitic Turing machine is also a non-deterministic one, by our definitions.
+    The P complexity class is a subset of NP because of this.
+  \end{alertblock}
+
+  \begin{alertblock}{Equivalent definition}
+    An equivalent definition of NP that you may come across is that NP is the set of languages $A$ that can be verified in polynomial time.
+    By verified we mean that a deterministic Turing machine can accept a language $\{ wc \}$ where $w$ is in $A$ and $c$ is some string, called the certificate for $w$.
+  \end{alertblock}
+
+\end{frame}
+
+
+\begin{frame}{NP-complete problems}
   \begin{definition}
-    An problem is $NP$-complete if it's in $NP$ and in $NP$-hard.
+    A problem is NP-hard if each problem in NP can be reduced to it in polynomial time.
+  \end{definition}
+
+  \begin{alertblock}{Reduction}
+    Reduction is a way of converting one problem into another, so that a solution to one is a solution to the other.
+    By reducing decision problem A to decision problem B, we mean that we can transform inputs to A into inputs to B in such a way that a given input to A is accepted iff the corresponding input to B is.
+  \end{alertblock}
+
+  \begin{definition}
+    An problem is NP-complete if it's in NP and is NP-hard.
   \end{definition}
 \end{frame}
 
 
 \begin{frame}{Subset sum problem}
-   
-   {\metroset{block=fill}
-  \begin{block}{Problem}
+  
+  \begin{alertblock}{Problem}
     Given a set of integers $S$, is there a non-empty subset whose elements sum to zero?
-  \end{block}}
+  \end{alertblock}
 
-  \vspace{0.5cm}
+  \vspace{4mm}
   
-  \begin{block}{Example}
+  \begin{exampleblock}{Example}
     Does $\{ 1, 3, 7, -5, -13, 2, 9, -8 \}$ have such a subset?
-  \end{block}
+  \end{exampleblock}
   
-  \vspace{0.5cm}
+  \vspace{4mm}
 
-  \begin{block}{Note}
-     If somebody suggests a soltuion, it is very quick to check it.
-    Being able to quickly verify a solution is a characteristic of $NP$ problems.
-  \end{block}
+  \begin{alertblock}{Note}
+     If somebody suggests a solution, it is very quick to check it.
+    Being able to quickly verify a solution is a characteristic of NP problems.
+  \end{alertblock}
+\end{frame}
+
+
+\begin{frame}{SAT motivation}
+  \begin{description}
+    \item[SAT] is short for the Boolean SATisfiability decision problem.
+    \item[It is] the archetypal NP-complete problem.
+    \item[Informally] it asks if there is a way to efficiently decide if an expression containing a bunch of Boolean variables combined using ands, ors, nots and brackets has any setting of the variables that makes the expression true.
+  \end{description}
+
+  \begin{exampleblock}{SAT instance example}
+    Consider the expression $(x_1 \lor \neg{x_2}) \land (\neg{x_1} \lor x_2 \lor x_3) \land \neg{x_1}$, where $x_1$, $x_2$ and $x_3$ are true/false variables.
+    Is there any setting of of the variables that makes the expression true?
+  \end{exampleblock}
 \end{frame}
 
 
@@ -84,101 +105,84 @@
     \vspace{0.3cm}
     \item[Not] is depicted by $\neg$. So ``not $a$'' is denoted by $\neg a$.
     \vspace{0.3cm}
-    \item[Or] is depicted by $\vee$. So ``$a$ or $b$'' is denoted by $a \vee b$.
+    \item[Or] is depicted by $\lor$. So ``$a$ or $b$'' is denoted by $a \lor b$.
     \vspace{0.3cm}
-    \item[And] is depicted by $\wedge$. So ``$a$ and $b$'' is denoted by $a \wedge b$.
+    \item[And] is depicted by $\land$. So ``$a$ and $b$'' is denoted by $a \land b$.
   \end{description}
 \end{frame}
 
 
 \begin{frame}{Normal forms}
   \begin{description}
-    \item[CNF] A clause is in Conjunctive Normal Form if it is a ``conjunction of disjunctions'': $(a \vee b) \wedge (\neg a \vee c) \wedge d$.
+    \item[CNF] A clause is in Conjunctive Normal Form if it is a ``conjunction of disjunctions'': $(a \lor b) \land (\neg a \lor c) \land d$.
     \vspace{0.5cm}
-    \item[DNF] A cluse is in Disjunctive Normal Form if it is a ``disjunction of conjunctions'': $(a \wedge b) \vee (\neg a \wedge c) \vee d$.
+    \item[DNF] A cluse is in Disjunctive Normal Form if it is a ``disjunction of conjunctions'': $(a \land b) \lor (\neg a \land c) \lor d$.
   \end{description}
-  \vspace{0.5cm}
-  {\metroset{block=fill}\begin{block}{Converting to CNF and DNF}
+  
+  \vspace{4mm}
+  \begin{alertblock}{Converting to CNF and DNF}
     Every Boolean expression can be converted to CNF, and every Boolean expression can also be converted to DNF.
-  \end{block}}
+  \end{alertblock}
 \end{frame}
 
 
 \begin{frame}{Four laws}
   The following four laws can be used to convert expressions to CNF and DNF.
   The first two are known as De Morgan's laws, and the latter two are called the distributivity laws.
-  \vspace{0.5cm}
-  {\metroset{block=fill}\begin{block}{Conversion laws}
-    \[ \neg ( a \vee b) = \neg a \wedge \neg b \]
-    \[ \neg ( a \wedge b) = \neg a \vee \neg b \]
-    \[ c \wedge ( a \vee b) = (c \wedge a) \vee (c \wedge b) \]
-    \[ c \vee ( a \wedge b) = (c \vee a) \wedge (c \vee b) \]
-  \end{block}}
+  \vspace{4mm}
+  \begin{alertblock}{Conversion laws}
+    \[ \neg ( a \lor b) = \neg a \land \neg b \]
+    \[ \neg ( a \land b) = \neg a \lor \neg b \]
+    \[ c \land ( a \lor b) = (c \land a) \lor (c \land b) \]
+    \[ c \lor ( a \land b) = (c \lor a) \land (c \lor b) \]
+  \end{alertblock}
 \end{frame}
 
 
 \begin{frame}{Boolean Satisfiability Problem (SAT)}
-  {\metroset{block=fill}
-    \begin{block}{The problem}
-    We're often interested in knowing if there is any setting of the variables in a Boolean expression that makes the expression true.
-    Another way of asking the question is: is the expression satisfiable?
-    The real question is, is there a polynomial time algorithm that takes as input \emph{any} Boolean expression and outputs true if there is any setting, and false otherwise.
-  \end{block}}
-  \vspace{0.5cm}
-  The problem is the prototypical NP-complete problem.
-  Note that it's quick to check the correctness of a solution for a given expression. 
-\end{frame}
-
-
-\begin{frame}{CNF SAT}
-  
-  {\metroset{block=fill}
-    \begin{block}{Only using CNF}
-    All Boolean expressions can be converted in CNF.
-    However, it's not always possible to do that in polynomial time.
-    We can though, in polynomial time, create new expressions using some extra(neous) variables that are satisfiable if and only if the original expression is.
-  \end{block}}
-  \vspace{0.5cm} 
+  \begin{description}
+    \item[SAT] is the set of all Boolean expressions that are satisfiable.
+    \item[Satisfiable] expressions have some setting of their constituent variables that causes them to evaluate as true.
+    \item[The SAT decision problem] is the problem of deciding which Boolean expressions are in SAT.
+    \item[Note] that it's easy to verify that a given setting of the variables in an expression make it true.
+  \end{description}
 \end{frame}
 
 
 \begin{frame}{$k$-SAT}
-  
-  {\metroset{block=fill}
-    \begin{block}{$k$-SAT}
-     $k$-SAT is like SAT except that all expressions must be in CNF and each clause must be a disjunction of $k$ literals.
-  \end{block}}
-  \vspace{0.25cm}
+  $k$-SAT is like SAT except that all expressions must be in CNF and each clause must be a disjunction of $k$ literals.
+
+  \vspace{2mm}
+
   \begin{description}
-  \item[2-SAT] $(a \vee b) \wedge (\neg c \vee d) \wedge \ldots$
-  \vspace{0.25cm}
-  \item[3-SAT] $(a \vee b \vee c) \wedge (\neg c \vee d \vee \neg a) \wedge \ldots$
+    \item[2-SAT] example: $(a \lor b) \land (\neg c \lor d) \land \ldots$
+    \item[2-SAT] is not NP-complete. There are polynomial time algorithms that solve it.
+    \item[3-SAT] example: $(a \lor b \lor c) \land (\neg c \lor d \lor \neg a) \land \ldots$
+    \item[3-SAT] is NP complete.
   \end{description}
-    \vspace{0.25cm}
-   \begin{description}
-     \item[2-SAT] is not NP-complete. There are polynomial time algorithms that solve it.
-     \vspace{0.25cm}
-     \item[3-SAT] is NP complete.
-   \end{description}
 \end{frame}
 
 
 \begin{frame}{3-SAT is NP-Complete}
 
-  {\metroset{block=fill}
-    \begin{block}{Reduction}
+  \begin{alertblock}{Reduction}
     3-SAT is a special case of SAT, so 3-SAT must be in NP.
     We can reduce SAT to 3-SAT in polynomial time.
     First take the expression and convert it to a CNF expression (in polynomial time).
     Then we just need to convert each clause into a CNF expression with 3 literals per clause.
     
     Suppose we have a clause with 1 literal: $a$.
-    Convert this to $(a \vee u_1 \vee u_2) \wedge (a \vee u_1 \vee \neg u_2) \wedge (a \vee \neg u_1 \vee u_2) \wedge (a \vee \neg u_1 \vee \neg u_2)$.
-    Suppose we have a clause with 2 literals: $a \vee b$.
-    Convert this to $(a \vee b \vee u_1) \wedge (a \vee b \vee \neg u_1))$.
+    Convert this to $(a \lor u_1 \lor u_2) \land (a \lor u_1 \lor \neg u_2) \land (a \lor \neg u_1 \lor u_2) \land (a \lor \neg u_1 \lor \neg u_2)$.
+    Suppose we have a clause with 2 literals: $a \lor b$.
+    Convert this to $(a \lor b \lor u_1) \land (a \lor b \lor \neg u_1))$.
     
-    Now suppose we have a clause with $n$ literals: $a \vee b \vee c \vee \ldots$.
-    Convert this to $(a \vee b \vee u_1) \wedge (c \vee \neg u_1 \vee u_2)) \wedge \ldots \wedge (i \vee \neg u_{n-4} \vee u_{n-3}) \wedge (j \vee k \vee \neg u_{n-3})$.
-  \end{block}}
+    Now suppose we have a clause with $n$ literals: $a \lor b \lor c \lor \ldots$.
+    Convert this to $(a \lor b \lor u_1) \land (c \lor \neg u_1 \lor u_2)) \land \ldots \land (i \lor \neg u_{n-4} \lor u_{n-3}) \land (j \lor k \lor \neg u_{n-3})$.
+  \end{alertblock}
+
+\end{frame}
+
+
+\begin{frame}{SUBSETSUM is NP-Complete}
 
 \end{frame}

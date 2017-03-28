@@ -22,7 +22,7 @@
 \end{frame}
 
 
-\begin{frame}{Bubble sort different sized inputs}
+\begin{frame}{Bubble sort for different sized inputs}
   \begin{alertblock}{How many comparisons does bubble sort make for inputs of increasing length?}
     \begin{itemize}
       \item Suppose we have a list with $n$ elements.
@@ -201,13 +201,10 @@
   \begin{definition}
     An algorithm is said to be solvable in \emph{polynomial time} if the number of steps required to complete the algorithm for a given input is $O(n^k)$ for some nonnegative integer $k$, where $n$ is the complexity of the input.
   \end{definition}
-  \vspace{0.5cm}
-  \metroset{block=fill}
-  \begin{block}{$P$ complexity class}
-    The $P$ complexity class is the set of problems for which there exists, for each such problem, at least one algorithm to solve that problem in polynomial time.
-  \end{block}
-
-  \citeurl{mathworld.wolfram.com/P-Problem.html}
+  \vspace{4mm}
+  \begin{alertblock}{Informally: P complexity class}
+    The P complexity class is the set of problems for which there exists, for each such problem, at least one algorithm to solve that problem in polynomial time.
+  \end{alertblock}
 \end{frame}
 
 
@@ -218,6 +215,10 @@
     \item[With Turing machines] we can use the number of times we look up the state table.
     \item[The size] of the input can be the length of the input on the tape initially.
   \end{description}
+  \vspace{4mm}
+  \begin{alertblock}{P complexity class}
+    The P complexity class is the set of languages for which there exists some Turing machine that decides the language in polynomial time.
+  \end{alertblock}
 \end{frame}
 
 

@@ -85,7 +85,7 @@
 
 \begin{frame}{SAT motivation}
   \begin{description}
-    \item[SAT] is short for the Boolean SATisfiability decision problem.
+    \item[SAT] is short for Boolean SATisfiability.
     \item[It is] the archetypal NP-complete problem.
     \item[Informally] it asks if there is a way to efficiently decide if an expression containing a bunch of Boolean variables combined using ands, ors, nots and brackets has any setting of the variables that makes the expression true.
   \end{description}
@@ -183,6 +183,11 @@
 \end{frame}
 
 
-\begin{frame}{SUBSETSUM is NP-Complete}
-
+\begin{frame}{SUBSETSUM and NP}
+  \begin{description}
+    \item[SUBSETSUM] is NP-complete.
+    \item[$2^n$] is the number of subsets. Note that $2^n$ is also the number of settings of $n$ Boolean variables.
+    \item[The correspondence] can be seen in terms of $0$'s and $1$'s. In SUBSETSUM the elements from the set that are included in a given subset are represented by $1$'s.
+    \item[The usual] proof that SUBSETSUM is NP-complete is done by reduction to 3-SAT.
+  \end{description}
 \end{frame}

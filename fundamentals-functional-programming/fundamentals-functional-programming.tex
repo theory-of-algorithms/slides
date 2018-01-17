@@ -1,0 +1,106 @@
+\documentclass[dvipsnames, hidelinks]{beamer}
+
+% Enables the use of colour.
+\usepackage{xcolor}
+% Syntax high-lighting for code. Requires Python's pygments.
+\usepackage{minted}
+% Enables the use of umlauts and other accents.
+\usepackage[utf8]{inputenc}
+% Diagrams.
+\usepackage{tikz}
+% Settings for captions, such as sideways captions.
+\usepackage{caption}
+% Symbols for units, like degrees and ohms.
+\usepackage{gensymb}
+% Latin modern fonts - better looking than the defaults.
+\usepackage{lmodern}
+% Allows for columns spanning multiple rows in tables.
+\usepackage{multirow}
+% Better looking tables, including nicer borders.
+\usepackage{booktabs}
+% More math symbols.
+\usepackage{amssymb}
+% More math layouts, equation arrays, etc.
+\usepackage{amsmath}
+% More math fonts, like mathbb.
+\usepackage{amsfonts}
+% More theorem environments.
+\usepackage{amsthm}
+% More column formats for tables.
+\usepackage{array}
+% Adjust the sizes of box environments.
+\usepackage{adjustbox}
+% Better looking single quotes in verbatim and minted environments.
+\usepackage{upquote}
+% Better blank space decisions.
+\usepackage{xspace}
+% Better looking tikz trees.
+\usepackage{forest}
+% URLs.
+\usepackage{hyperref}
+% For plotting.
+\usepackage{pgfplots}
+
+% Various tikz libraries.
+% For drawing mind maps.
+\usetikzlibrary{mindmap}
+% For adding shadows.
+\usetikzlibrary{shadows}
+% Extra arrows tips.
+\usetikzlibrary{arrows.meta}
+% Old arrows.
+\usetikzlibrary{arrows}
+% Automata.
+\usetikzlibrary{automata}
+% For more positioning options.
+\usetikzlibrary{positioning}
+% Creating chains of nodes on a line.
+\usetikzlibrary{chains}
+% Fitting node to contain set of coordinates.
+\usetikzlibrary{fit}
+% Extra shapes for drawing.
+\usetikzlibrary{shapes}
+% For markings on paths.
+\usetikzlibrary{decorations.markings}
+% For advanced calculations.
+\usetikzlibrary{calc}
+
+% GMIT colours.
+\definecolor{gmitblue}{RGB}{20,134,225}
+\definecolor{gmitred}{RGB}{220,20,60}
+\definecolor{gmitgrey}{RGB}{67,67,67}
+
+% Change some style options.
+\usetheme{metropolis}
+\usemintedstyle{manni}
+\setbeamercolor{structure}{fg=gmitblue}
+\setbeamercolor{frametitle}{fg=white, bg=gmitred}
+\setbeamercolor{alerted text}{fg=gmitblue}
+\usefonttheme[onlymath]{serif}
+
+% \citeurl can be used to a clickable short url to a slide as a reference.
+\renewcommand\footnoterule{}
+\newcommand{\citeurl}[1]{\let\thefootnote\relax\footnotetext{\tiny \textcolor{gmitgrey}{\href{http://#1}{#1}}}}
+\newcommand{\citeeg}[1]{\let\thefootnote\relax\footnotetext{\tiny \textcolor{gmitgrey}{#1}}}
+
+% A basic horizontal rule.
+\newcommand{\hr}{\rule{\textwidth}{0.5pt}}
+
+% Prevent minted from showing errors.
+\makeatletter
+\expandafter\def\csname PYGdefault@tok@err\endcsname{\def\PYGdefault@bc##1{{\strut ##1}}}
+\makeatother
+
+\begin{document}
+  \title{Fundamentals of functional programming}
+  \subtitle{}
+  \author{ian.mcloughlin@gmit.ie}
+  \date{}
+
+  \begin{frame}
+    \titlepage
+  \end{frame}
+
+  \input{content.tex} 
+\end{document}
+ 
